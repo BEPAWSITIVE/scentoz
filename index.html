@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCENTOZ | Haute Parfumerie · Maison de Parfum</title>
+  <meta name="description" content="Discover SCENTOZ Haute Parfumerie. Extrait de Parfum crafted with rare harvest botanicals between Grasse and Kannauj. 14+ hours enduring sillage. Complimentary shipping across India.">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Scentoz Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Scentoz Custom Luxury Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- 1. TOP LUXURY ANNOUNCEMENT TICKER (RICH PLUM/MAGENTA) -->
+  <div class="top-notice-strip">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="opacity: 0.9;">Currency:</span>
+      <select class="currency-select-top" aria-label="Select Currency">
+        <option value="INR" selected>INR (₹) - India</option>
+        <option value="USD">USD ($) - US</option>
+        <option value="EUR">EUR (€) - Europe</option>
+        <option value="GBP">GBP (£) - UK</option>
+        <option value="AED">AED (د.إ) - UAE</option>
+      </select>
+    </div>
+
+    <div class="center-msg">
+      <span>FLAT 10% OFF ON YOUR FIRST EXTRAIT FLACON</span>
+      <span>|</span>
+      <span>USE CODE: <strong>NEW10</strong></span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 6px; opacity: 0.95;">
+      <i class="fas fa-shipping-fast"></i>
+      <span>COMPLIMENTARY SHIPPING ACROSS INDIA</span>
+    </div>
+  </div>
+
+  <!-- 2. LUXURY WHITE HEADER WITH DUAL ROWS -->
+  <header class="main-header" id="siteHeader">
+    <div class="container">
+      
+      <!-- Top Row: Logo, Center Search Bar, Icons -->
+      <div class="header-top-row">
+        
+        <!-- Brand Logo (Geo Sans Light) -->
+        <a href="#" class="brand-logo-wrap" aria-label="SCENTOZ Home">
+          <span class="brand-logo-text">SCENTOZ</span>
+          <span class="brand-logo-sub">HAUTE PARFUMERIE · GRASSE & KANNAUJ</span>
+        </a>
+
+        <!-- Center Search Bar -->
+        <div class="header-search-bar">
+          <i class="fas fa-search"></i>
+          <input 
+            type="text" 
+            class="header-search-input" 
+            id="headerSearchInput" 
+            placeholder="Search fragrances, notes (Oud, Saffron, Rose, Amber)..." 
+            onkeyup="handleHeaderSearch(this.value)"
+            aria-label="Search Fragrances"
+          >
+        </div>
+
+        <!-- Header Action Icons -->
+        <div class="header-nav-icons">
+          <a href="#storeLocatorSection" class="header-icon-link" title="Find a Store">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Stores</span>
+          </a>
+
+          <a href="javascript:void(0)" onclick="showToast('Member Portal: Welcome to SCENTOZ Privé')" class="header-icon-link" title="Account">
+            <i class="far fa-user"></i>
+            <span>Account</span>
+          </a>
+
+          <a href="javascript:void(0)" onclick="showToast('Your Wishlist: 2 saved Extrait Flacons')" class="header-icon-link" title="Wishlist">
+            <i class="far fa-heart"></i>
+            <span>Wishlist</span>
+          </a>
+
+          <button class="header-icon-link" onclick="openCartDrawer()" id="cartHeaderBtn" title="Shopping Bag" aria-label="Shopping Bag">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="icon-count-badge" id="cartBadgeCount" style="display: none;">0</span>
+            <span>Bag</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Secondary Navigation Menu Strip -->
+    <nav class="secondary-nav-bar" aria-label="Store Categories">
+      <div class="container">
+        <ul class="nav-links-menu">
+          <li class="nav-menu-item active"><a href="#trendingSection" onclick="renderTrendingProducts()">ALL PERFUMES</a></li>
+          <li class="nav-menu-item"><a href="javascript:void(0)" onclick="filterByGender('for-her')">FOR HER</a></li>
+          <li class="nav-menu-item"><a href="javascript:void(0)" onclick="filterByGender('for-him')">FOR HIM</a></li>
+          <li class="nav-menu-item"><a href="#gourmandSection" onclick="filterByFamily('gourmand')">GOURMAND</a></li>
+          <li class="nav-menu-item"><a href="#giftingSection" onclick="scrollToGifting()">GIFT SETS</a></li>
+          <li class="nav-menu-item"><a href="javascript:void(0)" onclick="filterByFamily('amber')">DISCOVERY SETS</a></li>
+          <li class="nav-menu-item"><a href="#botanicalSection">ARTISANAL ATELIER</a></li>
+          <li class="nav-menu-item"><a href="javascript:void(0)" onclick="showToast('Special Privilege: Flat 10% off with code NEW10 at checkout')">OFFERS</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 3. HERO PROMOTIONAL BANNER (USING UPLOADED BANNER IMAGE) -->
+  <section class="hero-promo-banner" id="heroPromoBanner">
+    <div class="hero-banner-inner">
+      <a href="#trendingSection" class="hero-banner-link" aria-label="Explore SCENTOZ Trending Collection">
+        <img 
+          src="assets/images/hero-banner.png" 
+          alt="SCENTOZ - Crafted to linger, yours to try. Flat 10% Off with Code NEW10" 
+          class="hero-banner-img"
+        >
+      </a>
+
+      <!-- Interactive Floating Action Controls -->
+      <div class="hero-banner-controls">
+        <div class="hero-coupon-pill" onclick="copyHeroCoupon('NEW10')" title="Click to copy coupon code NEW10">
+          <i class="fas fa-tag"></i>
+          <span>Use Code: <strong>NEW10</strong></span>
+          <button type="button" class="btn-copy-code"><i class="far fa-copy"></i> Copy</button>
+        </div>
+
+        <a href="#trendingSection" class="hero-explore-btn">
+          <span>EXPLORE NOW</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. "TRENDING PRODUCTS" CAROUSEL SECTION (MATCHING REFERENCE IMAGE) -->
+  <section class="trending-section" id="trendingSection">
+    <div class="container">
+      
+      <div class="section-head-wrap">
+        <h2 class="trending-title">TRENDING PRODUCTS</h2>
+        <div style="font-size: 0.85rem; letter-spacing: 0.12em; color: var(--c5-plum); text-transform: uppercase;">
+          Handcrafted Extrait de Parfum with 30% Pure Oil Concentration
+        </div>
+      </div>
+
+      <!-- Carousel Container with Prev/Next Controls -->
+      <div class="trending-carousel-container">
+        
+        <button class="carousel-nav-btn carousel-prev-btn" onclick="prevTrendingSlide()" aria-label="Previous Products">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <!-- Dynamic Product Track (Rendered via app.js) -->
+        <div class="trending-products-track" id="trendingProductsTrack">
+          <!-- Dynamically populated with Perfume + Box visual combos -->
+        </div>
+
+        <button class="carousel-nav-btn carousel-next-btn" onclick="nextTrendingSlide()" aria-label="Next Products">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. DUAL SPLIT CAMPAIGN: "FOR HER" & "FOR HIM" (MATCHING ATTACHED DESIGN) -->
+  <section class="gender-split-section" id="genderSplitSection">
+    <div class="container">
+      <div class="gender-split-grid">
+        
+        <!-- "FOR HER" Campaign Card -->
+        <div class="gender-campaign-card" onclick="filterByGender('for-her')" title="Explore SCENTOZ For Her Collection">
+          <img 
+            src="assets/images/for-her.jpg" 
+            alt="SCENTOZ For Her - Floral & Amber Masterpieces"
+            class="gender-campaign-img"
+            loading="lazy"
+          >
+          <div class="gender-action-overlay">
+            <span class="gender-shop-pill">SHOP FOR HER <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- "FOR HIM" Campaign Card -->
+        <div class="gender-campaign-card" onclick="filterByGender('for-him')" title="Explore SCENTOZ For Him Collection">
+          <img 
+            src="assets/images/for-him.jpg" 
+            alt="SCENTOZ For Him - Woody & Smoked Leather Masterpieces"
+            class="gender-campaign-img"
+            loading="lazy"
+          >
+          <div class="gender-action-overlay">
+            <span class="gender-shop-pill">SHOP FOR HIM <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SOCIAL VIDEO REELS / STORIES CAROUSEL (MATCHING 6 REELS IN REFERENCE) -->
+  <section class="social-reels-section" id="socialReelsSection">
+    <div class="container">
+      
+      <div class="section-head-wrap" style="margin-bottom: 25px;">
+        <h2 class="trending-title">AS SEEN ON REELS · #SCENTOZ</h2>
+        <div style="font-size: 0.8rem; letter-spacing: 0.15em; color: var(--c5-plum); text-transform: uppercase;">
+          Real Unboxings, Olfactory Impressions & Longevity Tests
+        </div>
+      </div>
+
+      <!-- 6 Vertical Reel Cards -->
+      <div class="reels-grid-track">
+        
+        <!-- Reel 1 -->
+        <div class="reel-card-item" onclick="openReelModal('Aura D\'Or: The 14-Hour Longevity Test')">
+          <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=400&q=80" alt="Reel 1" loading="lazy">
+          <div class="reel-play-circle"><i class="fas fa-play"></i></div>
+          <div class="reel-caption-overlay">
+            <strong>14-Hour Wear Test</strong>
+            <div>Aura D'Or on skin & linen</div>
+          </div>
+        </div>
+
+        <!-- Reel 2 -->
+        <div class="reel-card-item" onclick="openReelModal('Pure Assam Oud Distillation')">
+          <img src="https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=400&q=80" alt="Reel 2" loading="lazy">
+          <div class="reel-play-circle"><i class="fas fa-play"></i></div>
+          <div class="reel-caption-overlay">
+            <strong>Artisanal Kannauj Stills</strong>
+            <div>Hydro-distillation of Taif Rose</div>
+          </div>
+        </div>
+
+        <!-- Reel 3 -->
+        <div class="reel-card-item" onclick="openReelModal('Unboxing Noir Obsidian Gift Coffret')">
+          <img src="https://images.unsplash.com/photo-1588405748480-1cf414c89329?auto=format&fit=crop&w=400&q=80" alt="Reel 3" loading="lazy">
+          <div class="reel-play-circle"><i class="fas fa-play"></i></div>
+          <div class="reel-caption-overlay">
+            <strong>Unboxing Noir Obsidian</strong>
+            <div>Velvet lining & gold monogram</div>
+          </div>
+        </div>
+
+        <!-- Reel 4 -->
+        <div class="reel-card-item" onclick="openReelModal('Date Night Compliment Magnet')">
+          <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=400&q=80" alt="Reel 4" loading="lazy">
+          <div class="reel-play-circle"><i class="fas fa-play"></i></div>
+          <div class="reel-caption-overlay">
+            <strong>Compliment Magnet</strong>
+            <div>Why Fleur Éternelle turns heads</div>
+          </div>
+        </div>
+
+        <!-- Reel 5 -->
+        <div class="reel-card-item" onclick="openReelModal('Bespoke Gold Engraving Atelier')">
+          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=400&q=80" alt="Reel 5" loading="lazy">
+          <div class="reel-play-circle"><i class="fas fa-play"></i></div>
+          <div class="reel-caption-overlay">
+            <strong>Personalized Flacons</strong>
+            <div>Hand engraving your initials</div>
+          </div>
+        </div>
+
+        <!-- Reel 6 -->
+        <div class="reel-card-item" onclick="openReelModal('Summer Freshness Redefined')">
+          <img src="https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=400&q=80" alt="Reel 6" loading="lazy">
+          <div class="reel-play-circle"><i class="fas fa-play"></i></div>
+          <div class="reel-caption-overlay">
+            <strong>L\'Élixir Bleu Aquatic</strong>
+            <div>Crisp sea salt & coastal sage</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. GOURMAND CAMPAIGN: "DELICIOUSLY ADDICTIVE" (MATCHING REFERENCE) -->
+  <section class="gourmand-campaign-banner" id="gourmandSection">
+    <div class="container">
+      <div class="gourmand-banner-grid">
+        
+        <!-- Left Side: Editorial Typography -->
+        <div class="gourmand-text-side">
+          <div class="gourmand-brand-badge">SCENTOZ DÉLICE COLLECTION</div>
+          <h2 class="gourmand-title-big">DELICIOUSLY ADDICTIVE</h2>
+          <p class="gourmand-desc">
+            Indulgent, gourmand compositions blending bourbon vanilla orchid, caramelised hazelnut praline, wild raspberry coulis, and warm liquid amber. Irresistibly sweet, decadent, and long-lasting.
+          </p>
+          <button class="btn-gourmand-cta" onclick="filterByFamily('gourmand')">
+            DISCOVER THE RANGE <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- Right Side: Luxury Visual -->
+        <div class="gourmand-visual-side">
+          <img 
+            src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=800&q=80" 
+            alt="SCENTOZ Deliciously Addictive Gourmand" 
+            class="gourmand-visual-img"
+            loading="lazy"
+          >
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. LUXURY GIFTING BANNER: "SOME GIFTS SPEAK BEYOND WORDS" (MATCHING REFERENCE) -->
+  <section class="gifting-lifestyle-section" id="giftingSection">
+    <div class="container">
+      <div class="gifting-content-box">
+        <h2 class="gifting-title">SOME GIFTS SPEAK BEYOND WORDS</h2>
+        <p class="gifting-subtitle">
+          Present someone special with an exquisite SCENTOZ Coffret. Encased in velvet-lined keepsake boxes with gold foil monograms, silk ribbons, and complimentary bespoke hand-engraved initials.
+        </p>
+        <button class="btn-gifting-cta" onclick="filterByFamily('rose')">
+          EXPLORE GIFT SETS <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. ARTISANAL BOTANICAL DISTILLATION SPLIT SECTION -->
+  <section class="botanical-split-section" id="botanicalSection">
+    <div class="container">
+      <div class="botanical-split-grid">
+        
+        <!-- Left Image: Copper Stills & Damask Roses -->
+        <div class="botanical-img-side">
+          <img 
+            src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=900&q=80" 
+            alt="Kannauj Deg-Bhapka Hydro-distillation Stills"
+            loading="lazy"
+          >
+        </div>
+
+        <!-- Right Text: Haute Parfumerie Credentials -->
+        <div class="botanical-text-side">
+          <div class="botanical-head-small">MAISON DE PARFUM · TRADITION & SCIENCE</div>
+          <h2 class="botanical-title">THE ART OF HYDRO-DISTILLATION</h2>
+          <p class="botanical-desc">
+            For generations, the master distillers of Kannauj and the nose chemists of Grasse have extracted pure attar oils using century-old copper degs and clay condensers. We preserve this heritage at an uncompromising 30% Extrait concentration.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 10px;">
+            <div style="border-left: 2px solid var(--c2-rose); padding-left: 12px;">
+              <strong style="color: var(--c1-blush); font-size: 0.82rem; display: block;">Pure Kashmiri Saffron</strong>
+              <span style="font-size: 0.74rem; color: #D4CADB;">Hand-plucked stigma yields deep golden spicy warmth.</span>
+            </div>
+            <div style="border-left: 2px solid var(--c2-rose); padding-left: 12px;">
+              <strong style="color: var(--c1-blush); font-size: 0.82rem; display: block;">Assam Wild Agarwood</strong>
+              <span style="font-size: 0.74rem; color: #D4CADB;">Naturally inoculated resin with 20+ year aged vintage oud.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. TESTIMONIALS SECTION (MATCHING REFERENCE DESIGN) -->
+  <section class="testimonials-section" id="testimonialsSection">
+    <div class="container">
+      
+      <div class="section-head-wrap">
+        <h2 class="trending-title">WHAT OUR PATRONS SAY</h2>
+        <div style="font-size: 0.82rem; letter-spacing: 0.12em; color: var(--c5-plum); text-transform: uppercase;">
+          Over 4,800+ Five-Star Reviews Across India & Worldwide
+        </div>
+      </div>
+
+      <div class="testimonials-grid">
+        
+        <!-- Review 1 -->
+        <div class="testimonial-card-item">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">
+            "Aura D'Or is genuinely on par with Creed and Maison Francis Kurkdjian. The 30% extrait concentration is no joke — I could still smell the saffron and Mysore sandalwood after a 12-hour workday and dinner!"
+          </p>
+          <div class="test-author-name">Ananya Singhania</div>
+          <div class="test-author-loc">Mumbai · Verified Buyer</div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="testimonial-card-item">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">
+            "Noir Obsidian is the darkest, most aristocratic leather and Assam oud fragrance I've ever experienced. The presentation box alone feels like a luxury Swiss watch case."
+          </p>
+          <div class="test-author-name">Vikramaditya Roy</div>
+          <div class="test-author-loc">New Delhi · Verified Buyer</div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="testimonial-card-item">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">
+            "Ordered the coffret with custom gold engraving for our anniversary. The packaging arrived impeccably within 48 hours in Bengaluru with silk ribbons and sample vials. Pure perfection."
+          </p>
+          <div class="test-author-name">Meera & Rohan Nair</div>
+          <div class="test-author-loc">Bengaluru · Verified Buyer</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 11. "FIND A STORE NEAR YOU" STRIP (MATCHING REFERENCE DESIGN) -->
+  <section class="store-locator-strip" id="storeLocatorSection">
+    <div class="container">
+      <h3 class="store-loc-title">FIND A SCENTOZ BOUTIQUE NEAR YOU</h3>
+      
+      <form class="store-loc-form" onsubmit="handleStoreSearch(event)">
+        <button type="button" class="btn-loc-current" onclick="useCurrentLocation()">
+          <i class="fas fa-crosshairs"></i> USE CURRENT LOCATION
+        </button>
+        
+        <input 
+          type="text" 
+          class="store-pincode-input" 
+          id="storePincodeInput" 
+          placeholder="Enter Pincode or City..." 
+          aria-label="Pincode or City"
+        >
+
+        <button type="submit" class="btn-loc-search">
+          <i class="fas fa-search"></i> SEARCH
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 12. ASSURANCE TRUST STRIP (MATCHING REFERENCE DESIGN) -->
+  <section class="assurance-strip">
+    <div class="container">
+      <div class="assurance-grid">
+        
+        <div class="assurance-item">
+          <i class="fas fa-shield-alt"></i>
+          <div class="assurance-text">
+            <h4>100% ORIGINAL EXTRAIT</h4>
+            <p>Direct from our Grasse & Kannauj distilleries</p>
+          </div>
+        </div>
+
+        <div class="assurance-item">
+          <i class="fas fa-truck"></i>
+          <div class="assurance-text">
+            <h4>COMPLIMENTARY SHIPPING</h4>
+            <p>Express 48-hr insured delivery pan-India</p>
+          </div>
+        </div>
+
+        <div class="assurance-item">
+          <i class="fas fa-lock"></i>
+          <div class="assurance-text">
+            <h4>100% SECURE CHECKOUT</h4>
+            <p>UPI, Credit/Debit Cards, NetBanking, & EMI</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. PRESTIGE FOOTER (DARK & NOBLE MATCHING REFERENCE DESIGN) -->
+  <footer class="site-footer-dark">
+    <div class="container">
+      
+      <div class="footer-top-grid">
+        
+        <!-- Column 1: Brand Info -->
+        <div>
+          <span style="font-family: var(--font-heading) !important; font-size: 1.8rem; letter-spacing: 0.25em; color: #FFFFFF; display: block; margin-bottom: 8px;">SCENTOZ</span>
+          <p style="font-size: 0.8rem; color: #9D92A9; line-height: 1.7; margin-bottom: 18px;">
+            Maison de Haute Parfumerie hand-crafting 30% concentration Extrait de Parfum. Rooted in ancient Kannauj hydro-distillation and French olfactory elegance.
+          </p>
+          <div style="display: flex; gap: 14px; font-size: 1.1rem; color: #D8A9C1;">
+            <a href="javascript:void(0)" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="javascript:void(0)" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="javascript:void(0)" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+            <a href="javascript:void(0)" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2: Fragrance Collections -->
+        <div>
+          <h4 class="footer-col-title">COLLECTIONS</h4>
+          <ul class="footer-links-list">
+            <li><a href="javascript:void(0)" onclick="filterByGender('for-her')">Extrait For Her</a></li>
+            <li><a href="javascript:void(0)" onclick="filterByGender('for-him')">Extrait For Him</a></li>
+            <li><a href="#gourmandSection">Délice Gourmand</a></li>
+            <li><a href="#giftingSection">Artisanal Coffrets</a></li>
+            <li><a href="#trendingSection">Discovery Wardrobe</a></li>
+            <li><a href="javascript:void(0)" onclick="showToast('Complimentary bespoke engraving available on all 100ml flacons')">Bespoke Engraving</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Customer Care -->
+        <div>
+          <h4 class="footer-col-title">CUSTOMER CONCIERGE</h4>
+          <ul class="footer-links-list">
+            <li><a href="javascript:void(0)" onclick="showToast('Track order: Enter order ID in support chat')">Track Your Order</a></li>
+            <li><a href="javascript:void(0)" onclick="showToast('Pan-India shipping is complimentary on all orders')">Shipping Policy</a></li>
+            <li><a href="javascript:void(0)" onclick="showToast('Returns: 14-day hassle-free replacement on sealed flacons')">Returns & Exchanges</a></li>
+            <li><a href="javascript:void(0)" onclick="showToast('Authenticity Certificate included with every numbered flacon')">Certificate of Authenticity</a></li>
+            <li><a href="#storeLocatorSection">Store Boutiques</a></li>
+            <li><a href="javascript:void(0)" onclick="showToast('Concierge Hotline: +91 1800-SCENTOZ')">Contact Concierge</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Boutiques -->
+        <div>
+          <h4 class="footer-col-title">FLAGSHIP BOUTIQUES</h4>
+          <ul class="footer-links-list">
+            <li><a href="#storeLocatorSection">Kala Ghoda, Mumbai</a></li>
+            <li><a href="#storeLocatorSection">The Chanakya, New Delhi</a></li>
+            <li><a href="#storeLocatorSection">Lavelle Road, Bengaluru</a></li>
+            <li><a href="#storeLocatorSection">Banjara Hills, Hyderabad</a></li>
+            <li><a href="#storeLocatorSection">Park Street, Kolkata</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Newsletter & Privilege Club -->
+        <div>
+          <h4 class="footer-col-title">SCENTOZ PRIVÉ</h4>
+          <p style="font-size: 0.78rem; color: #9D92A9; margin-bottom: 12px; line-height: 1.6;">
+            Subscribe to receive private preview invitations to rare seasonal extractions and an instant 10% voucher.
+          </p>
+          <div style="display: flex; gap: 6px;">
+            <input 
+              type="email" 
+              placeholder="Your email address..." 
+              style="flex: 1; padding: 10px 12px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(216, 169, 193, 0.3); border-radius: 4px; color: #FFFFFF; font-size: 0.8rem; outline: none;"
+            >
+            <button 
+              type="button" 
+              onclick="showToast('Welcome to SCENTOZ Privé. Check your inbox for voucher code NEW10.')"
+              style="padding: 10px 16px; background: #852256; color: #FFFFFF; font-weight: 700; font-size: 0.78rem; border-radius: 4px;"
+            >
+              JOIN
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar: Legal & Payment Icons -->
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 SCENTOZ HAUTE PARFUMERIE. ALL RIGHTS RESERVED. CRAFTED FOR DISTINCTION.
+        </div>
+        <div class="payment-gateways-row">
+          <i class="fab fa-cc-visa" title="Visa"></i>
+          <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+          <i class="fab fa-cc-amex" title="American Express"></i>
+          <i class="fas fa-qrcode" title="BHIM UPI"></i>
+          <i class="fab fa-apple-pay" title="Apple Pay"></i>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- 14. SLIDE-OUT SHOPPING BAG DRAWER -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="closeCartDrawer()"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Bag">
+    
+    <!-- Drawer Header -->
+    <div class="cart-drawer-header">
+      <h3 class="cart-title">YOUR SHOPPING BAG</h3>
+      <button class="cart-close-btn" onclick="closeCartDrawer()" aria-label="Close Shopping Bag">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Free Shipping Meter -->
+    <div class="free-shipping-meter">
+      <div class="shipping-meter-text">
+        <i class="fas fa-gift"></i> YOU QUALIFY FOR COMPLIMENTARY EXPRESS DELIVERY
+      </div>
+      <div class="shipping-progress-track">
+        <div class="shipping-progress-fill" id="shippingProgressFill" style="width: 100%;"></div>
+      </div>
+    </div>
+
+    <!-- Scrollable Items List -->
+    <div class="cart-items-list" id="cartItemsList">
+      <!-- Injected dynamically via app.js -->
+    </div>
+
+    <!-- Drawer Footer & Checkout Trigger -->
+    <div class="cart-drawer-footer">
+      
+      <!-- Coupon Application -->
+      <div class="cart-coupon-wrap">
+        <input 
+          type="text" 
+          class="coupon-input" 
+          id="couponCodeInput" 
+          placeholder="Privilege Code (NEW10)" 
+          aria-label="Coupon Code"
+        >
+        <button class="btn-apply-coupon" onclick="applyCouponCode()">APPLY</button>
+      </div>
+
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">₹0</span>
+      </div>
+      
+      <div class="cart-summary-line" style="color: #6B1D45; font-weight: 600;">
+        <span>Privilege Discount</span>
+        <span id="cartDiscount">₹0</span>
+      </div>
+
+      <div class="cart-summary-line">
+        <span>Shipping (Insured Express)</span>
+        <span style="color: #1F1726; font-weight: 700;">FREE</span>
+      </div>
+
+      <div class="cart-summary-total">
+        <span>Total</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+
+      <button class="btn-checkout-now" onclick="openCheckoutModal()">
+        <i class="fas fa-lock"></i> PROCEED TO CHECKOUT
+      </button>
+      
+      <div style="font-size: 0.68rem; text-align: center; color: #847491; margin-top: 10px;">
+        Includes 2 complimentary 2ml extrait samples + wax-sealed certificate
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- 15. QUICK VIEW MODAL -->
+  <div class="modal-backdrop" id="quickViewModal" onclick="if(event.target === this) closeQuickViewModal()">
+    <div class="checkout-modal-card" style="max-width: 780px;">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-heading) !important; font-size: 1.15rem; letter-spacing: 0.15em;">EXTRAIT PROFILE & PYRAMID</h3>
+        <button onclick="closeQuickViewModal()" style="font-size: 1.3rem; color: #584A63;"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body-scroll" id="quickViewContent">
+        <!-- Rendered by app.js openQuickViewModal -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 16. CHECKOUT MODAL -->
+  <div class="modal-backdrop" id="checkoutModal" onclick="if(event.target === this) closeCheckoutModal()">
+    <div class="checkout-modal-card">
+      
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-family: var(--font-heading) !important; font-size: 1.3rem; letter-spacing: 0.2em; color: #1F1726;">SCENTOZ</span>
+          <span style="font-size: 0.8rem; color: var(--c5-plum); letter-spacing: 0.1em;">| SECURE PRIVÉ CHECKOUT</span>
+        </div>
+        <button onclick="closeCheckoutModal()" style="font-size: 1.3rem; color: #584A63;"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="modal-body-scroll">
+        <form onsubmit="processFinalOrder(event)">
+          <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px;">
+            
+            <!-- Left Form Fields: Delivery Address (India Focused) -->
+            <div>
+              <h4 style="font-size: 0.95rem; letter-spacing: 0.12em; color: #1F1726; margin-bottom: 16px; border-bottom: 1px solid rgba(216, 169, 193, 0.4); padding-bottom: 6px;">
+                1. DELIVERY INFORMATION
+              </h4>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                <div>
+                  <label style="font-size: 0.72rem; color: #5C4D68; font-weight: 600;">FIRST NAME</label>
+                  <input type="text" required value="Aditya" style="width: 100%; padding: 10px; border: 1px solid rgba(216, 169, 193, 0.5); border-radius: 4px; font-size: 0.82rem; outline: none;">
+                </div>
+                <div>
+                  <label style="font-size: 0.72rem; color: #5C4D68; font-weight: 600;">LAST NAME</label>
+                  <input type="text" required value="Sharma" style="width: 100%; padding: 10px; border: 1px solid rgba(216, 169, 193, 0.5); border-radius: 4px; font-size: 0.82rem; outline: none;">
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                <div>
+                  <label style="font-size: 0.72rem; color: #5C4D68; font-weight: 600;">EMAIL (FOR DISPATCH & INVOICE)</label>
+                  <input type="email" required value="aditya.sharma@example.com" style="width: 100%; padding: 10px; border: 1px solid rgba(216, 169, 193, 0.5); border-radius: 4px; font-size: 0.82rem; outline: none;">
+                </div>
+                <div>
+                  <label style="font-size: 0.72rem; color: #5C4D68; font-weight: 600;">PHONE NUMBER (+91)</label>
+                  <input type="tel" required value="+91 98765 43210" style="width: 100%; padding: 10px; border: 1px solid rgba(216, 169, 193, 0.5); border-radius: 4px; font-size: 0.82rem; outline: none;">
+                </div>
+              </div>
+
+              <div style="margin-bottom: 12px;">
+                <label style="font-size: 0.72rem; color: #5C4D68; font-weight: 600;">STREET ADDRESS / RESIDENCE</label>
+                <input type="text" required value="42, Sterling Residency, Indiranagar" style="width: 100%; padding: 10px; border: 1px solid rgba(216, 169, 193, 0.5); border-radius: 4px; font-size: 0.82rem; outline: none;">
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 24px;">
+                <div>
+                  <label style="font-size: 0.72rem; color: #5C4D68; font-weight: 600;">CITY</label>
+                  <input type="text" required value="Bengaluru" style="width: 100%; padding: 10px; border: 1px solid rgba(216, 169, 193, 0.5); border-radius: 4px; font-size: 0.82rem; outline: none;">
+                </div>
+                <div>
+                  <label style="font-size: 0.72rem; color: #5C4D68; font-weight: 600;">STATE</label>
+                  <input type="text" required value="Karnataka" style="width: 100%; padding: 10px; border: 1px solid rgba(216, 169, 193, 0.5); border-radius: 4px; font-size: 0.82rem; outline: none;">
+                </div>
+                <div>
+                  <label style="font-size: 0.72rem; color: #5C4D68; font-weight: 600;">PINCODE</label>
+                  <input type="text" required value="560038" style="width: 100%; padding: 10px; border: 1px solid rgba(216, 169, 193, 0.5); border-radius: 4px; font-size: 0.82rem; outline: none;">
+                </div>
+              </div>
+
+              <h4 style="font-size: 0.95rem; letter-spacing: 0.12em; color: #1F1726; margin-bottom: 14px; border-bottom: 1px solid rgba(216, 169, 193, 0.4); padding-bottom: 6px;">
+                2. SELECT PAYMENT METHOD
+              </h4>
+
+              <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1.5px solid #852256; border-radius: 6px; background: #FAF6F5; cursor: pointer;">
+                  <input type="radio" name="payMethod" value="upi" checked>
+                  <span style="font-weight: 700; font-size: 0.85rem;"><i class="fas fa-qrcode" style="color: #852256;"></i> Instant UPI (Google Pay / PhonePe / Paytm)</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid rgba(216, 169, 193, 0.5); border-radius: 6px; cursor: pointer;">
+                  <input type="radio" name="payMethod" value="card">
+                  <span style="font-size: 0.85rem;"><i class="fas fa-credit-card" style="color: #5C4D68;"></i> Credit / Debit Cards / NetBanking</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid rgba(216, 169, 193, 0.5); border-radius: 6px; cursor: pointer;">
+                  <input type="radio" name="payMethod" value="cod">
+                  <span style="font-size: 0.85rem;"><i class="fas fa-money-bill-wave" style="color: #5C4D68;"></i> Cash on Delivery (COD Verified)</span>
+                </label>
+              </div>
+
+            </div>
+
+            <!-- Right: Order Summary Card -->
+            <div style="background: #FAF6F5; border: 1px solid rgba(216, 169, 193, 0.4); padding: 22px; border-radius: 6px; height: fit-content;">
+              <h4 style="font-family: var(--font-heading) !important; font-size: 1.1rem; color: #1F1726; margin-bottom: 14px;">ORDER SUMMARY</h4>
+              
+              <div id="checkoutSummaryItems" style="border-bottom: 1px solid rgba(216, 169, 193, 0.35); padding-bottom: 14px; margin-bottom: 14px;">
+                <!-- Populated by app.js openCheckoutModal -->
+              </div>
+
+              <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 6px;">
+                <span>Complimentary Shipping</span>
+                <span style="color: #6B1D45; font-weight: 700;">FREE (BlueDart Express)</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 14px;">
+                <span>Complimentary Vials</span>
+                <span style="color: #6B1D45; font-weight: 700;">2 Included</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 700; color: #1F1726; border-top: 1px solid rgba(216, 169, 193, 0.4); padding-top: 12px; margin-bottom: 20px;">
+                <span>Total Due</span>
+                <span id="checkoutFinalTotal">₹0</span>
+              </div>
+
+              <button type="submit" class="btn-checkout-now">
+                <i class="fas fa-check-circle"></i> CONFIRM & PLACE ORDER
+              </button>
+
+              <div style="font-size: 0.7rem; color: #5C4D68; text-align: center; margin-top: 12px; line-height: 1.4;">
+                <i class="fas fa-lock"></i> 256-bit SSL encrypted checkout. You will receive an SMS and email tracking notification immediately.
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 17. TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scentoz Application Logic -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
