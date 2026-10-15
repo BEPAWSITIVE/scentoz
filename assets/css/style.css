@@ -139,22 +139,29 @@ button {
   padding: 0 24px;
 }
 
-/* 4. MAIN HEADER & SECONDARY NAV (TRANSPARENT FROSTED GLASS) */
+/* 4. MAIN HEADER & SECONDARY NAV (TRANSPARENT OVERLAY ON HERO BANNER) */
 .main-header {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(216, 169, 193, 0.28);
-  position: sticky;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 100;
-  box-shadow: 0 4px 20px rgba(184, 152, 193, 0.08);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: none;
+  transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
 .main-header.scrolled {
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 6px 25px rgba(184, 152, 193, 0.14);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(45, 8, 29, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(236, 189, 198, 0.25);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
 .header-top-row {
@@ -169,7 +176,7 @@ button {
 .mobile-toggle-btn {
   display: none;
   font-size: 1.25rem;
-  color: #1F1726;
+  color: #FFFFFF;
   background: none;
   border: none;
   padding: 8px;
@@ -186,20 +193,21 @@ button {
   font-family: var(--font-heading) !important;
   font-size: 2.1rem;
   letter-spacing: 0.25em;
-  color: #1F1726;
+  color: #FFFFFF;
   line-height: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .brand-logo-sub {
   font-size: 0.58rem;
   letter-spacing: 0.35em;
-  color: var(--c5-plum);
+  color: #F6D9D2;
   font-weight: 600;
   text-transform: uppercase;
   margin-top: 3px;
 }
 
-/* Header Center Search Bar */
+/* Header Center Search Bar (Translucent Glass on Banner) */
 .header-search-bar {
   flex: 1;
   max-width: 480px;
@@ -210,21 +218,25 @@ button {
   width: 100%;
   height: 40px;
   padding: 0 16px 0 44px;
-  background: rgba(250, 246, 245, 0.65);
+  background: rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(216, 169, 193, 0.45);
+  border: 1px solid rgba(246, 217, 210, 0.35);
   border-radius: 22px;
   font-size: 0.85rem;
-  color: #2D2236;
+  color: #FFFFFF;
   outline: none;
   transition: all var(--transition-fast);
 }
 
+.header-search-input::placeholder {
+  color: rgba(246, 217, 210, 0.75);
+}
+
 .header-search-input:focus {
-  background: #FFFFFF;
-  border-color: var(--c3-mauve);
-  box-shadow: 0 0 12px rgba(216, 169, 193, 0.35);
+  background: rgba(255, 255, 255, 0.24);
+  border-color: #F6D9D2;
+  box-shadow: 0 0 16px rgba(246, 217, 210, 0.4);
 }
 
 .header-search-bar i {
@@ -232,7 +244,7 @@ button {
   left: 18px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--c5-plum);
+  color: #F6D9D2;
   font-size: 0.9rem;
 }
 
@@ -252,28 +264,32 @@ button {
   flex-direction: column;
   align-items: center;
   font-size: 0.72rem;
-  color: #34263E;
+  color: #F6D9D2;
   position: relative;
-  transition: color var(--transition-fast);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast), transform 0.2s ease;
 }
 
 .header-icon-link i {
   font-size: 1.15rem;
   margin-bottom: 2px;
-  color: #4A3C59;
+  color: #FFFFFF;
+  transition: color var(--transition-fast);
 }
 
 .header-icon-link:hover i,
 .header-icon-link:hover {
-  color: #852256;
+  color: #ECBDC6;
 }
 
 .icon-count-badge {
   position: absolute;
   top: -6px;
   right: -8px;
-  background: #852256;
-  color: #FFFFFF;
+  background: #ECBDC6;
+  color: #2D081D;
   font-size: 0.65rem;
   font-weight: 700;
   width: 18px;
@@ -282,15 +298,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* Secondary Navigation Strip (Translucent Frosted Glass) */
+/* Secondary Navigation Strip (Desktop Transparent Glass) */
 .secondary-nav-bar {
-  background: rgba(250, 246, 245, 0.65);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(216, 169, 193, 0.2);
-  border-bottom: 1px solid rgba(216, 169, 193, 0.2);
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .nav-links-menu {
@@ -306,7 +321,7 @@ button {
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #34263E;
+  color: #F6D9D2;
   font-weight: 600;
   position: relative;
   transition: color var(--transition-fast);
@@ -314,7 +329,7 @@ button {
 
 .nav-menu-item a:hover,
 .nav-menu-item.active a {
-  color: #852256;
+  color: #FFFFFF;
 }
 
 .nav-menu-item a::after {
@@ -324,7 +339,7 @@ button {
   left: 0;
   width: 0;
   height: 2px;
-  background: #852256;
+  background: #ECBDC6;
   transition: width 0.3s ease;
 }
 
@@ -1557,37 +1572,79 @@ button {
   /* 1. Top Notice Strip on Mobile */
 
 
-  /* 2. Header on Mobile */
+  /* 2. Header on Mobile (Transparent Overlay on Hero Banner) */
+  .main-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .main-header.scrolled {
+    position: fixed;
+    background: rgba(45, 8, 29, 0.95);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  .main-header .container {
+    padding: 0 14px;
+  }
   .header-top-row {
     height: auto;
     padding: 10px 0 8px;
+    display: flex;
     flex-wrap: wrap;
-    gap: 8px 12px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px 0;
   }
   .mobile-toggle-btn {
     display: none !important;
   }
+  .brand-logo-wrap {
+    order: 1;
+    max-width: 65%;
+  }
   .brand-logo-text {
-    font-size: 1.55rem;
-    letter-spacing: 0.18em;
+    font-size: 1.45rem;
+    letter-spacing: 0.14em;
+    color: #FFFFFF;
   }
   .brand-logo-sub {
-    font-size: 0.48rem;
-    letter-spacing: 0.22em;
+    font-size: 0.42rem;
+    letter-spacing: 0.12em;
+    color: #F6D9D2;
+    white-space: nowrap;
+  }
+  .header-nav-icons {
+    order: 2;
+    gap: 14px;
+    margin-left: auto;
+  }
+  .header-icon-link {
+    font-size: 0.65rem;
+  }
+  .header-icon-link i {
+    font-size: 1.05rem;
   }
   .header-search-bar {
     order: 3;
-    width: 100%;
-    max-width: 100%;
-    margin-top: 4px;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 6px;
   }
   .header-search-input {
     height: 38px;
     font-size: 0.82rem;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(246, 217, 210, 0.35);
+    color: #FFFFFF;
   }
-  .header-nav-icons {
-    gap: 16px;
-    margin-left: auto;
+  .header-search-input::placeholder {
+    color: rgba(246, 217, 210, 0.75);
   }
 
   /* 3. Category bar below header is removed on phone view */
