@@ -139,68 +139,37 @@ button {
   padding: 0 24px;
 }
 
-/* 4. TOP ANNOUNCEMENT STRIP (TRANSLUCENT ROYAL PLUM) */
-.top-notice-strip {
-  background: linear-gradient(90deg, rgba(107, 29, 69, 0.96) 0%, rgba(133, 34, 86, 0.96) 50%, rgba(107, 29, 69, 0.96) 100%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: #FFFFFF;
-  padding: 8px 16px;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+/* 4. CURRENCY SELECTOR PILL (HEADER) */
+.currency-header-pill {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  z-index: 102;
-  position: relative;
 }
 
-.currency-selector-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.top-notice-strip .center-msg {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.top-notice-strip strong {
-  background: rgba(255, 255, 255, 0.22);
-  padding: 2px 8px;
-  border-radius: 3px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-.shipping-msg-wrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  opacity: 0.95;
-}
-
-.currency-select-top {
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #FFFFFF;
+.currency-select-header {
+  background: rgba(250, 246, 245, 0.7);
+  border: 1px solid rgba(216, 169, 193, 0.45);
+  color: #1F1726;
   font-family: var(--font-body);
   font-size: 0.74rem;
-  padding: 2px 8px;
-  border-radius: 4px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 16px;
   outline: none;
   cursor: pointer;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all var(--transition-fast);
 }
 
-.currency-select-top option {
-  background: #34263E;
-  color: #FFFFFF;
+.currency-select-header:hover, .currency-select-header:focus {
+  border-color: #852256;
+  background: #FFFFFF;
+  box-shadow: 0 0 10px rgba(216, 169, 193, 0.3);
+}
+
+.currency-select-header option {
+  background: #FFFFFF;
+  color: #1F1726;
 }
 
 /* 5. MAIN HEADER & SECONDARY NAV (TRANSPARENT FROSTED GLASS) */
@@ -1428,30 +1397,7 @@ button {
 
 @media (max-width: 768px) {
   /* 1. Top Notice Strip on Mobile */
-  .top-notice-strip {
-    padding: 8px 12px;
-    font-size: 0.72rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-  .shipping-msg-wrap {
-    display: none; /* Hide verbose secondary text on mobile to avoid clutter */
-  }
-  .currency-selector-wrap {
-    font-size: 0.7rem;
-  }
-  .currency-label {
-    display: none;
-  }
-  .currency-select-top {
-    padding: 2px 6px;
-    font-size: 0.7rem;
-  }
-  .top-notice-strip .center-msg {
-    margin: 0;
-    font-size: 0.72rem;
-  }
+
 
   /* 2. Header on Mobile */
   .header-top-row {

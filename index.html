@@ -17,30 +17,7 @@
 </head>
 <body>
 
-  <!-- 1. TOP LUXURY ANNOUNCEMENT TICKER (TRANSLUCENT RICH PLUM) -->
-  <div class="top-notice-strip">
-    <div class="currency-selector-wrap">
-      <span class="currency-label">Currency:</span>
-      <select class="currency-select-top" aria-label="Select Currency">
-        <option value="INR" selected>INR (₹)</option>
-        <option value="USD">USD ($)</option>
-        <option value="EUR">EUR (€)</option>
-        <option value="GBP">GBP (£)</option>
-        <option value="AED">AED (د.إ)</option>
-      </select>
-    </div>
-
-    <div class="center-msg">
-      <span>FLAT 10% OFF | USE CODE: <strong>NEW10</strong></span>
-    </div>
-
-    <div class="shipping-msg-wrap">
-      <i class="fas fa-shipping-fast"></i>
-      <span>COMPLIMENTARY SHIPPING ACROSS INDIA</span>
-    </div>
-  </div>
-
-  <!-- 2. LUXURY TRANSPARENT HEADER WITH DUAL ROWS -->
+  <!-- 1. LUXURY TRANSPARENT HEADER WITH DUAL ROWS -->
   <header class="main-header" id="siteHeader">
     <div class="container">
       
@@ -73,6 +50,17 @@
 
         <!-- Header Action Icons -->
         <div class="header-nav-icons">
+          <!-- Currency Selector Pill -->
+          <div class="currency-header-pill">
+            <select class="currency-select-header" aria-label="Select Currency">
+              <option value="INR" selected>₹ INR</option>
+              <option value="USD">$ USD</option>
+              <option value="EUR">€ EUR</option>
+              <option value="GBP">£ GBP</option>
+              <option value="AED">AED</option>
+            </select>
+          </div>
+
           <!-- Mobile search icon toggle -->
           <button class="header-icon-link mobile-search-btn" onclick="toggleMobileSearchBar()" title="Search Fragrances">
             <i class="fas fa-search"></i>

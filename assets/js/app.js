@@ -772,7 +772,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCartDrawer();
 
   // Currency select listeners
-  document.querySelectorAll('.currency-select-top').forEach(sel => {
+  document.querySelectorAll('.currency-select-top, .currency-select-header').forEach(sel => {
     sel.addEventListener('change', (e) => changeCurrency(e.target.value));
   });
 });
