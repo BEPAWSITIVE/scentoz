@@ -139,40 +139,7 @@ button {
   padding: 0 24px;
 }
 
-/* 4. CURRENCY SELECTOR PILL (HEADER) */
-.currency-header-pill {
-  display: flex;
-  align-items: center;
-}
-
-.currency-select-header {
-  background: rgba(250, 246, 245, 0.7);
-  border: 1px solid rgba(216, 169, 193, 0.45);
-  color: #1F1726;
-  font-family: var(--font-body);
-  font-size: 0.74rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 16px;
-  outline: none;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all var(--transition-fast);
-}
-
-.currency-select-header:hover, .currency-select-header:focus {
-  border-color: #852256;
-  background: #FFFFFF;
-  box-shadow: 0 0 10px rgba(216, 169, 193, 0.3);
-}
-
-.currency-select-header option {
-  background: #FFFFFF;
-  color: #1F1726;
-}
-
-/* 5. MAIN HEADER & SECONDARY NAV (TRANSPARENT FROSTED GLASS) */
+/* 4. MAIN HEADER & SECONDARY NAV (TRANSPARENT FROSTED GLASS) */
 .main-header {
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(16px);
@@ -1592,9 +1559,10 @@ button {
 
   /* 2. Header on Mobile */
   .header-top-row {
-    height: 60px;
-    padding: 0;
-    gap: 12px;
+    height: auto;
+    padding: 10px 0 8px;
+    flex-wrap: wrap;
+    gap: 8px 12px;
   }
   .mobile-toggle-btn {
     display: block;
@@ -1607,8 +1575,19 @@ button {
     font-size: 0.48rem;
     letter-spacing: 0.22em;
   }
+  .header-search-bar {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 4px;
+  }
+  .header-search-input {
+    height: 38px;
+    font-size: 0.82rem;
+  }
   .header-nav-icons {
-    gap: 12px;
+    gap: 16px;
+    margin-left: auto;
   }
 
   /* 3. Horizontal Swipeable Category Chips on Mobile */

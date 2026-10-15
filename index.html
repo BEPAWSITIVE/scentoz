@@ -35,19 +35,21 @@
           <span class="brand-logo-sub">HAUTE PARFUMERIE · GRASSE & KANNAUJ</span>
         </a>
 
+        <!-- Center Search Bar (Live Fragrance & Notes Search - No Button) -->
+        <div class="header-search-bar" id="headerSearchBar">
+          <i class="fas fa-search"></i>
+          <input 
+            type="text" 
+            class="header-search-input" 
+            id="headerSearchInput" 
+            placeholder="Search fragrances, notes (Oud, Saffron, Rose, Amber)..." 
+            onkeyup="handleHeaderSearch(this.value)"
+            aria-label="Search Fragrances"
+          >
+        </div>
+
         <!-- Header Action Icons (Clean Luxury Navigation) -->
         <div class="header-nav-icons">
-          <!-- Currency Selector Pill -->
-          <div class="currency-header-pill">
-            <select class="currency-select-header" aria-label="Select Currency">
-              <option value="INR" selected>₹ INR</option>
-              <option value="USD">$ USD</option>
-              <option value="EUR">€ EUR</option>
-              <option value="GBP">£ GBP</option>
-              <option value="AED">AED</option>
-            </select>
-          </div>
-
           <a href="javascript:void(0)" onclick="showToast('Member Portal: Welcome to SCENTOZ Privé')" class="header-icon-link" title="Account">
             <i class="far fa-user"></i>
             <span>Account</span>

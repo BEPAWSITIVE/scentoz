@@ -15,14 +15,6 @@
 
 // 1. STATE & GLOBAL CONFIGURATION
 const APP_STATE = {
-  currency: 'INR',
-  currencyRates: {
-    INR: { symbol: '₹', rate: 1, name: 'Indian Rupee' },
-    USD: { symbol: '$', rate: 0.012, name: 'US Dollar' },
-    EUR: { symbol: '€', rate: 0.011, name: 'Euro' },
-    GBP: { symbol: '£', rate: 0.0094, name: 'British Pound' },
-    AED: { symbol: 'AED ', rate: 0.044, name: 'UAE Dirham' }
-  },
   cart: [],
   wishlist: [],
   appliedCoupon: null,
@@ -415,23 +407,9 @@ function generateBotanicalNotesSVG(perfume) {
   `;
 }
 
-// 4. CURRENCY CONVERSION & FORMATTING
+// 4. PRICE FORMATTING (INR - ₹)
 function formatPrice(inrAmount) {
-  const current = APP_STATE.currencyRates[APP_STATE.currency] || APP_STATE.currencyRates.INR;
-  const converted = inrAmount * current.rate;
-  
-  if (APP_STATE.currency === 'INR') {
-    return '₹' + Math.round(converted).toLocaleString('en-IN');
-  } else if (APP_STATE.currency === 'USD') {
-    return '$' + Math.round(converted).toLocaleString();
-  } else if (APP_STATE.currency === 'EUR') {
-    return '€' + Math.round(converted).toLocaleString();
-  } else if (APP_STATE.currency === 'GBP') {
-    return '£' + Math.round(converted).toLocaleString();
-  } else if (APP_STATE.currency === 'AED') {
-    return 'AED ' + Math.round(converted).toLocaleString();
-  }
-  return '₹' + Math.round(inrAmount).toLocaleString('en-IN');
+  return '₹' + Math.round(inrAmount || 0).toLocaleString('en-IN');
 }
 
 // 5. PRODUCT CARD HTML & MULTI-IMAGE SLIDER CONTROLLER
@@ -979,17 +957,7 @@ function processFinalOrder(e) {
   showToast(`Congratulations! Order #${orderId} confirmed via BlueDart Express.`);
 }
 
-// 11. CURRENCY SWITCHER
-function changeCurrency(curr) {
-  if (APP_STATE.currencyRates[curr]) {
-    APP_STATE.currency = curr;
-    renderTrendingProducts();
-    renderCartDrawer();
-    showToast(`Currency set to ${APP_STATE.currencyRates[curr].name}`);
-  }
-}
-
-// 12. FILTER & SEARCH HELPERS
+// 11. FILTER & SEARCH HELPERS
 function filterByGender(gender) {
   const filtered = PERFUMES.filter(p => p.gender === gender || p.gender === 'unisex');
   const track = document.getElementById('trendingProductsTrack');
@@ -1107,15 +1075,10 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// 14. INITIALIZATION
+// 13. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
   loadCartFromStorage();
   updateCartBadge();
   renderTrendingProducts();
   renderCartDrawer();
-
-  // Currency select listeners
-  document.querySelectorAll('.currency-select-top, .currency-select-header').forEach(sel => {
-    sel.addEventListener('change', (e) => changeCurrency(e.target.value));
-  });
 });
