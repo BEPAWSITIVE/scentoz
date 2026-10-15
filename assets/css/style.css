@@ -139,7 +139,7 @@ button {
   padding: 0 24px;
 }
 
-/* 4. MAIN HEADER & SECONDARY NAV (TRANSPARENT OVERLAY ON HERO BANNER) */
+/* 4. MAIN HEADER & SECONDARY NAV (NON-STICKY TRANSPARENT OVERLAY ON HERO BANNER) */
 .main-header {
   background: transparent;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
@@ -149,19 +149,6 @@ button {
   width: 100%;
   z-index: 100;
   box-shadow: none;
-  transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-}
-
-.main-header.scrolled {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(45, 8, 29, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(236, 189, 198, 0.25);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
 .header-top-row {
@@ -1241,11 +1228,31 @@ button {
   margin-bottom: 50px;
 }
 
-.footer-col-title {
+.footer-col-title,
+.footer-col-title-btn {
   font-size: 0.82rem;
   letter-spacing: 0.18em;
   color: #FFFFFF;
   margin-bottom: 18px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+}
+
+.footer-col-chevron {
+  display: none;
+}
+
+.footer-col-content {
+  display: block;
 }
 
 .footer-links-list {
@@ -1572,7 +1579,7 @@ button {
   /* 1. Top Notice Strip on Mobile */
 
 
-  /* 2. Header on Mobile (Transparent Overlay on Hero Banner) */
+  /* 2. Header on Mobile (Non-Sticky Transparent Overlay on Hero Banner) */
   .main-header {
     position: absolute;
     top: 0;
@@ -1580,13 +1587,6 @@ button {
     width: 100%;
     background: transparent;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .main-header.scrolled {
-    position: fixed;
-    background: rgba(45, 8, 29, 0.95);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   }
   .main-header .container {
     padding: 0 14px;
@@ -1835,19 +1835,89 @@ button {
     padding: 0 10px;
   }
 
-  /* 13. Footer on Mobile */
+  /* 13. Responsive Luxury Footer on Mobile (Prevents excessive vertical height) */
   .site-footer-dark {
-    padding: 45px 0 20px;
+    padding: 35px 0 20px;
   }
   .footer-top-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 25px;
+  }
+  .footer-brand-col {
+    padding-bottom: 20px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .footer-brand-col p {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    color: #9D92A9;
+  }
+  .footer-nav-col {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .footer-col-title-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 0;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    color: #FFFFFF;
+  }
+  .footer-col-chevron {
+    display: inline-block;
+    font-size: 0.72rem;
+    color: #D8A9C1;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .footer-nav-col.open .footer-col-chevron {
+    transform: rotate(180deg);
+  }
+  .footer-col-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+  }
+  .footer-nav-col.open .footer-col-content {
+    max-height: 280px;
+    opacity: 1;
+    padding-bottom: 14px;
+  }
+  .footer-links-list li {
+    margin-bottom: 8px;
+  }
+  .footer-links-list a {
+    font-size: 0.78rem;
+    color: #B5A8C2;
+    display: block;
+    padding: 2px 0;
+  }
+  .footer-newsletter-col {
+    padding-top: 20px;
+    margin-bottom: 10px;
+  }
+  .footer-newsletter-col .footer-col-title {
+    margin-bottom: 8px;
   }
   .footer-bottom-bar {
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
     text-align: center;
+    padding-top: 18px;
+    font-size: 0.7rem;
+  }
+  .payment-gateways-row {
+    justify-content: center;
+    gap: 16px;
+    font-size: 1.25rem;
   }
 
   /* 14. Modals and Drawers on Mobile */

@@ -1064,16 +1064,15 @@ function toggleMobileMenu() {
   }
 }
 
-// Window scroll effect for transparent header
-window.addEventListener('scroll', () => {
-  const header = document.getElementById('siteHeader');
-  if (!header) return;
-  if (window.scrollY > 40) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-});
+// Mobile Footer Accordion Toggle
+function toggleFooterCol(btn) {
+  if (window.innerWidth > 768) return;
+  const col = btn.closest('.footer-nav-col');
+  if (!col) return;
+  const isOpen = col.classList.contains('open');
+  col.classList.toggle('open');
+  btn.setAttribute('aria-expanded', !isOpen);
+}
 
 // 13. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {

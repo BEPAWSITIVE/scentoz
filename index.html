@@ -374,13 +374,13 @@
   </section>
 
   <!-- 13. PRESTIGE FOOTER (DARK & NOBLE MATCHING REFERENCE DESIGN) -->
-  <footer class="site-footer-dark">
+  <footer class="site-footer-dark" id="siteFooter">
     <div class="container">
       
       <div class="footer-top-grid">
         
         <!-- Column 1: Brand Info -->
-        <div>
+        <div class="footer-brand-col">
           <span style="font-family: var(--font-heading) !important; font-size: 1.8rem; letter-spacing: 0.25em; color: #FFFFFF; display: block; margin-bottom: 8px;">SCENTOZ</span>
           <p style="font-size: 0.8rem; color: #9D92A9; line-height: 1.7; margin-bottom: 18px;">
             Maison de Haute Parfumerie hand-crafting 30% concentration Extrait de Parfum. Rooted in ancient Kannauj hydro-distillation and French olfactory elegance.
@@ -393,46 +393,61 @@
           </div>
         </div>
 
-        <!-- Column 2: Fragrance Collections -->
-        <div>
-          <h4 class="footer-col-title">COLLECTIONS</h4>
-          <ul class="footer-links-list">
-            <li><a href="javascript:void(0)" onclick="filterByGender('for-her')">Extrait For Her</a></li>
-            <li><a href="javascript:void(0)" onclick="filterByGender('for-him')">Extrait For Him</a></li>
-            <li><a href="#gourmandSection">Délice Gourmand</a></li>
-            <li><a href="#giftingSection">Artisanal Coffrets</a></li>
-            <li><a href="#trendingSection">Discovery Wardrobe</a></li>
-            <li><a href="javascript:void(0)" onclick="showToast('Complimentary bespoke engraving available on all 100ml flacons')">Bespoke Engraving</a></li>
-          </ul>
+        <!-- Column 2: Fragrance Collections (Accordion on Mobile) -->
+        <div class="footer-nav-col">
+          <button type="button" class="footer-col-title-btn" onclick="toggleFooterCol(this)" aria-expanded="false">
+            <span>COLLECTIONS</span>
+            <i class="fas fa-chevron-down footer-col-chevron"></i>
+          </button>
+          <div class="footer-col-content">
+            <ul class="footer-links-list">
+              <li><a href="javascript:void(0)" onclick="filterByGender('for-her')">Extrait For Her</a></li>
+              <li><a href="javascript:void(0)" onclick="filterByGender('for-him')">Extrait For Him</a></li>
+              <li><a href="#gourmandSection">Délice Gourmand</a></li>
+              <li><a href="#giftingSection">Artisanal Coffrets</a></li>
+              <li><a href="#trendingSection">Discovery Wardrobe</a></li>
+              <li><a href="javascript:void(0)" onclick="showToast('Complimentary bespoke engraving available on all 100ml flacons')">Bespoke Engraving</a></li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Column 3: Customer Care -->
-        <div>
-          <h4 class="footer-col-title">CUSTOMER CONCIERGE</h4>
-          <ul class="footer-links-list">
-            <li><a href="javascript:void(0)" onclick="showToast('Track order: Enter order ID in support chat')">Track Your Order</a></li>
-            <li><a href="javascript:void(0)" onclick="showToast('Pan-India shipping is complimentary on all orders')">Shipping Policy</a></li>
-            <li><a href="javascript:void(0)" onclick="showToast('Returns: 14-day hassle-free replacement on sealed flacons')">Returns & Exchanges</a></li>
-            <li><a href="javascript:void(0)" onclick="showToast('Authenticity Certificate included with every numbered flacon')">Certificate of Authenticity</a></li>
-            <li><a href="#storeLocatorSection">Store Boutiques</a></li>
-            <li><a href="javascript:void(0)" onclick="showToast('Concierge Hotline: +91 1800-SCENTOZ')">Contact Concierge</a></li>
-          </ul>
+        <!-- Column 3: Customer Care (Accordion on Mobile) -->
+        <div class="footer-nav-col">
+          <button type="button" class="footer-col-title-btn" onclick="toggleFooterCol(this)" aria-expanded="false">
+            <span>CUSTOMER CONCIERGE</span>
+            <i class="fas fa-chevron-down footer-col-chevron"></i>
+          </button>
+          <div class="footer-col-content">
+            <ul class="footer-links-list">
+              <li><a href="javascript:void(0)" onclick="showToast('Track order: Enter order ID in support chat')">Track Your Order</a></li>
+              <li><a href="javascript:void(0)" onclick="showToast('Pan-India shipping is complimentary on all orders')">Shipping Policy</a></li>
+              <li><a href="javascript:void(0)" onclick="showToast('Returns: 14-day hassle-free replacement on sealed flacons')">Returns & Exchanges</a></li>
+              <li><a href="javascript:void(0)" onclick="showToast('Authenticity Certificate included with every numbered flacon')">Certificate of Authenticity</a></li>
+              <li><a href="#storeLocatorSection">Store Boutiques</a></li>
+              <li><a href="javascript:void(0)" onclick="showToast('Concierge Hotline: +91 1800-SCENTOZ')">Contact Concierge</a></li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Column 4: Boutiques -->
-        <div>
-          <h4 class="footer-col-title">FLAGSHIP BOUTIQUES</h4>
-          <ul class="footer-links-list">
-            <li><a href="#storeLocatorSection">Kala Ghoda, Mumbai</a></li>
-            <li><a href="#storeLocatorSection">The Chanakya, New Delhi</a></li>
-            <li><a href="#storeLocatorSection">Lavelle Road, Bengaluru</a></li>
-            <li><a href="#storeLocatorSection">Banjara Hills, Hyderabad</a></li>
-            <li><a href="#storeLocatorSection">Park Street, Kolkata</a></li>
-          </ul>
+        <!-- Column 4: Boutiques (Accordion on Mobile) -->
+        <div class="footer-nav-col">
+          <button type="button" class="footer-col-title-btn" onclick="toggleFooterCol(this)" aria-expanded="false">
+            <span>FLAGSHIP BOUTIQUES</span>
+            <i class="fas fa-chevron-down footer-col-chevron"></i>
+          </button>
+          <div class="footer-col-content">
+            <ul class="footer-links-list">
+              <li><a href="#storeLocatorSection">Kala Ghoda, Mumbai</a></li>
+              <li><a href="#storeLocatorSection">The Chanakya, New Delhi</a></li>
+              <li><a href="#storeLocatorSection">Lavelle Road, Bengaluru</a></li>
+              <li><a href="#storeLocatorSection">Banjara Hills, Hyderabad</a></li>
+              <li><a href="#storeLocatorSection">Park Street, Kolkata</a></li>
+            </ul>
+          </div>
         </div>
 
         <!-- Column 5: Newsletter & Privilege Club -->
-        <div>
+        <div class="footer-newsletter-col">
           <h4 class="footer-col-title">SCENTOZ PRIVÉ</h4>
           <p style="font-size: 0.78rem; color: #9D92A9; margin-bottom: 12px; line-height: 1.6;">
             Subscribe to receive private preview invitations to rare seasonal extractions and an instant 10% voucher.
