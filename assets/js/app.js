@@ -816,7 +816,7 @@ function applyCouponCode() {
     APP_STATE.appliedCoupon = { code: code, pct: 10 };
     showToast(`Code ${code} applied! 10% discount added.`);
   } else {
-    showToast('Invalid coupon. Try code NEW10');
+    showToast('Invalid privilege code. Please check and try again.');
   }
   renderCartDrawer();
 }
@@ -1018,12 +1018,12 @@ function handleHeaderSearch(query) {
 function copyHeroCoupon(code) {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(code).then(() => {
-      showToast(`Privilege Code "${code}" copied to clipboard! (10% OFF applied)`);
+      showToast(`Privilege Code "${code}" copied to clipboard!`);
     }).catch(() => {
-      showToast(`Privilege Code: ${code} (10% OFF at checkout)`);
+      showToast(`Privilege Code: ${code} applied at checkout`);
     });
   } else {
-    showToast(`Privilege Code: ${code} (10% OFF at checkout)`);
+    showToast(`Privilege Code: ${code} applied at checkout`);
   }
   const input = document.getElementById('couponCodeInput');
   if (input) input.value = code;

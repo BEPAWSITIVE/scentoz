@@ -481,12 +481,7 @@ button {
 
 @media (max-width: 768px) {
   .hero-banner-controls {
-    position: static;
-    background: #2D081D;
-    padding: 14px 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: none;
   }
 }
 
