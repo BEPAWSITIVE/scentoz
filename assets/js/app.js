@@ -1074,8 +1074,22 @@ function toggleFooterCol(btn) {
   btn.setAttribute('aria-expanded', !isOpen);
 }
 
+// Window scroll listener: Sticky Header (Search Bar is non-sticky)
+function checkHeaderSticky() {
+  const header = document.getElementById('siteHeader');
+  if (!header) return;
+  if (window.scrollY > 40) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+}
+window.addEventListener('scroll', checkHeaderSticky, { passive: true });
+window.addEventListener('resize', checkHeaderSticky);
+
 // 13. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
+  checkHeaderSticky();
   loadCartFromStorage();
   updateCartBadge();
   renderTrendingProducts();

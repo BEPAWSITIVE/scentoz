@@ -139,7 +139,7 @@ button {
   padding: 0 24px;
 }
 
-/* 4. MAIN HEADER & SECONDARY NAV (NON-STICKY TRANSPARENT OVERLAY ON HERO BANNER) */
+/* 4. MAIN HEADER (STICKY HEADER WITH NON-STICKY SEARCH BAR) */
 .main-header {
   background: transparent;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
@@ -149,6 +149,33 @@ button {
   width: 100%;
   z-index: 100;
   box-shadow: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* MAIN HEADER IS STICKY ON SCROLL */
+.main-header.scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(45, 8, 29, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(236, 189, 198, 0.22);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+}
+
+.main-header.scrolled .header-top-row {
+  height: 56px;
+}
+
+/* SEARCH BAR IS NON-STICKY: Only appears at the top on hero banner, never in sticky header */
+.main-header.scrolled .header-search-bar {
+  display: none !important;
+}
+
+.main-header.scrolled .secondary-nav-bar .nav-links-menu {
+  padding: 8px 0;
 }
 
 .header-top-row {
@@ -1579,7 +1606,7 @@ button {
   /* 1. Top Notice Strip on Mobile */
 
 
-  /* 2. Header on Mobile (Non-Sticky Transparent Overlay on Hero Banner) */
+  /* 2. Header on Mobile (Sticky Main Header with Non-Sticky Search Bar) */
   .main-header {
     position: absolute;
     top: 0;
@@ -1587,6 +1614,26 @@ button {
     width: 100%;
     background: transparent;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .main-header.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(45, 8, 29, 0.95);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  /* Search bar is NON-STICKY: hidden when header is sticky */
+  .main-header.scrolled .header-search-bar {
+    display: none !important;
+  }
+  .main-header.scrolled .header-top-row {
+    height: 48px;
+    padding: 6px 0;
+    gap: 0;
   }
   .main-header .container {
     padding: 0 14px;
