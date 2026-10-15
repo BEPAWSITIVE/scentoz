@@ -139,9 +139,11 @@ button {
   padding: 0 24px;
 }
 
-/* 4. TOP ANNOUNCEMENT STRIP (RICH PLUM/MAGENTA AS IN REFERENCE) */
+/* 4. TOP ANNOUNCEMENT STRIP (TRANSLUCENT ROYAL PLUM) */
 .top-notice-strip {
-  background: linear-gradient(90deg, #6B1D45 0%, #852256 50%, #6B1D45 100%);
+  background: linear-gradient(90deg, rgba(107, 29, 69, 0.96) 0%, rgba(133, 34, 86, 0.96) 50%, rgba(107, 29, 69, 0.96) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: #FFFFFF;
   padding: 8px 16px;
   font-size: 0.78rem;
@@ -150,7 +152,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 101;
+  z-index: 102;
+  position: relative;
+}
+
+.currency-selector-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .top-notice-strip .center-msg {
@@ -158,26 +167,35 @@ button {
   align-items: center;
   gap: 10px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .top-notice-strip strong {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.22);
   padding: 2px 8px;
   border-radius: 3px;
   font-weight: 700;
   letter-spacing: 0.1em;
 }
 
+.shipping-msg-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.95;
+}
+
 .currency-select-top {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.35);
   color: #FFFFFF;
   font-family: var(--font-body);
   font-size: 0.74rem;
   padding: 2px 8px;
-  border-radius: 3px;
+  border-radius: 4px;
   outline: none;
   cursor: pointer;
+  backdrop-filter: blur(4px);
 }
 
 .currency-select-top option {
@@ -185,22 +203,41 @@ button {
   color: #FFFFFF;
 }
 
-/* 5. MAIN HEADER & SECONDARY NAV (WHITE & LUXURIOUS) */
+/* 5. MAIN HEADER & SECONDARY NAV (TRANSPARENT FROSTED GLASS) */
 .main-header {
-  background: #FFFFFF;
-  border-bottom: 1px solid rgba(216, 169, 193, 0.35);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(216, 169, 193, 0.28);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 15px rgba(184, 152, 193, 0.08);
+  box-shadow: 0 4px 20px rgba(184, 152, 193, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.main-header.scrolled {
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 6px 25px rgba(184, 152, 193, 0.14);
 }
 
 .header-top-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 74px;
+  height: 72px;
   gap: 20px;
+}
+
+/* Mobile Toggle Button */
+.mobile-toggle-btn {
+  display: none;
+  font-size: 1.25rem;
+  color: #1F1726;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
 }
 
 /* Brand Logo (SCENTOZ in Geo Sans Light) */
@@ -229,15 +266,17 @@ button {
 /* Header Center Search Bar */
 .header-search-bar {
   flex: 1;
-  max-width: 500px;
+  max-width: 480px;
   position: relative;
 }
 
 .header-search-input {
   width: 100%;
-  height: 42px;
+  height: 40px;
   padding: 0 16px 0 44px;
-  background: #FAF6F5;
+  background: rgba(250, 246, 245, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(216, 169, 193, 0.45);
   border-radius: 22px;
   font-size: 0.85rem;
@@ -266,6 +305,10 @@ button {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.mobile-search-btn {
+  display: none;
 }
 
 .header-icon-link {
@@ -305,11 +348,13 @@ button {
   justify-content: center;
 }
 
-/* Secondary Navigation Strip */
+/* Secondary Navigation Strip (Translucent Frosted Glass) */
 .secondary-nav-bar {
-  background: #FAF6F5;
-  border-top: 1px solid rgba(216, 169, 193, 0.25);
-  border-bottom: 1px solid rgba(216, 169, 193, 0.25);
+  background: rgba(250, 246, 245, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(216, 169, 193, 0.2);
+  border-bottom: 1px solid rgba(216, 169, 193, 0.2);
 }
 
 .nav-links-menu {
@@ -319,7 +364,6 @@ button {
   gap: 32px;
   padding: 10px 0;
   list-style: none;
-  flex-wrap: wrap;
 }
 
 .nav-menu-item a {
@@ -353,7 +397,7 @@ button {
   width: 100%;
 }
 
-/* 6. HERO PROMOTIONAL CAROUSEL BANNER (USING UPLOADED BANNER IMAGE) */
+/* 6. HERO PROMOTIONAL BANNER */
 .hero-promo-banner {
   position: relative;
   width: 100%;
@@ -372,6 +416,12 @@ button {
   display: block;
   width: 100%;
   cursor: pointer;
+  line-height: 0;
+}
+
+.hero-picture {
+  display: block;
+  width: 100%;
   line-height: 0;
 }
 
@@ -700,72 +750,7 @@ button {
   color: #FFFFFF;
 }
 
-/* 9. SOCIAL REELS / VIDEO CAROUSEL (MATCHING 6 REELS IN REFERENCE) */
-.social-reels-section {
-  padding: 50px 0 70px;
-  background: #FAF6F5;
-}
 
-.reels-grid-track {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px;
-}
-
-.reel-card-item {
-  position: relative;
-  height: 280px;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-}
-
-.reel-card-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.reel-card-item:hover img {
-  transform: scale(1.06);
-}
-
-.reel-play-circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.45);
-  border: 1.5px solid #FFFFFF;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  transition: all var(--transition-fast);
-}
-
-.reel-card-item:hover .reel-play-circle {
-  background: #852256;
-  transform: translate(-50%, -50%) scale(1.15);
-}
-
-.reel-caption-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 12px 10px;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-  color: #FFFFFF;
-  font-size: 0.72rem;
-  line-height: 1.3;
-}
 
 /* 10. GOURMAND CAMPAIGN: "DELICIOUSLY ADDICTIVE" (MATCHING REFERENCE) */
 .gourmand-campaign-banner {
@@ -1432,25 +1417,363 @@ button {
   to { transform: translateX(0); opacity: 1; }
 }
 
-/* RESPONSIVE */
-@media (max-width: 1100px) {
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE STYLES (MOBILE, TABLET & DESKTOP)
+   ========================================================================== */
+@media (max-width: 1024px) {
   .trending-products-track { grid-template-columns: repeat(2, 1fr); }
-  .reels-grid-track { grid-template-columns: repeat(3, 1fr); }
-  .hero-promo-inner { grid-template-columns: 1fr; text-align: center; }
-  .hero-tagline-col { text-align: center; margin: 0 auto; }
-  .hero-offer-badge-box { margin: 0 auto; }
-  .footer-top-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+  .gourmand-banner-grid { gap: 24px; }
 }
 
 @media (max-width: 768px) {
-  .gender-split-grid { grid-template-columns: 1fr; }
-  .reels-grid-track { grid-template-columns: repeat(2, 1fr); }
-  .gourmand-banner-grid { grid-template-columns: 1fr; text-align: center; }
-  .botanical-split-grid { grid-template-columns: 1fr; }
-  .testimonials-grid { grid-template-columns: 1fr; }
-  .assurance-grid { grid-template-columns: 1fr; }
-  .cart-drawer { width: 100vw; }
-  .header-top-row { flex-wrap: wrap; height: auto; padding: 15px 0; }
-  .header-search-bar { order: 3; max-width: 100%; width: 100%; margin-top: 10px; }
-  .nav-links-menu { gap: 16px; }
+  /* 1. Top Notice Strip on Mobile */
+  .top-notice-strip {
+    padding: 8px 12px;
+    font-size: 0.72rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .shipping-msg-wrap {
+    display: none; /* Hide verbose secondary text on mobile to avoid clutter */
+  }
+  .currency-selector-wrap {
+    font-size: 0.7rem;
+  }
+  .currency-label {
+    display: none;
+  }
+  .currency-select-top {
+    padding: 2px 6px;
+    font-size: 0.7rem;
+  }
+  .top-notice-strip .center-msg {
+    margin: 0;
+    font-size: 0.72rem;
+  }
+
+  /* 2. Header on Mobile */
+  .header-top-row {
+    height: 60px;
+    padding: 0;
+    gap: 12px;
+  }
+  .mobile-toggle-btn {
+    display: block;
+  }
+  .brand-logo-text {
+    font-size: 1.55rem;
+    letter-spacing: 0.18em;
+  }
+  .brand-logo-sub {
+    font-size: 0.48rem;
+    letter-spacing: 0.22em;
+  }
+  .desktop-only-icon {
+    display: none !important;
+  }
+  .mobile-search-btn {
+    display: flex;
+  }
+  .header-nav-icons {
+    gap: 14px;
+  }
+  .header-search-bar {
+    display: none; /* Toggled on mobile via mobile-search-btn */
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(216, 169, 193, 0.3);
+    z-index: 105;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  }
+  .header-search-bar.active {
+    display: block;
+    animation: fadeInDown 0.25s ease;
+  }
+
+  /* 3. Horizontal Swipeable Category Chips on Mobile */
+  .secondary-nav-bar {
+    padding: 0;
+    overflow: hidden;
+  }
+  .secondary-nav-bar .container {
+    padding: 0 8px;
+  }
+  .nav-links-menu {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding: 8px 6px;
+    scrollbar-width: none;
+    justify-content: flex-start;
+  }
+  .nav-links-menu::-webkit-scrollbar {
+    display: none;
+  }
+  .nav-menu-item {
+    flex-shrink: 0;
+  }
+  .nav-menu-item a {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    padding: 5px 12px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(216, 169, 193, 0.45);
+    border-radius: 16px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .nav-menu-item.active a,
+  .nav-menu-item a:hover {
+    background: #852256;
+    color: #FFFFFF;
+    border-color: #852256;
+  }
+  .nav-menu-item a::after {
+    display: none;
+  }
+
+  /* 4. Hero Banner on Mobile (Portrait Size) */
+  .hero-banner-controls {
+    display: none; /* Mobile portrait banner has all info baked in and is tap-optimized */
+  }
+  .hero-banner-img {
+    max-height: none;
+    aspect-ratio: 750 / 1000; /* Beautiful 3:4 portrait size */
+  }
+
+  /* 5. Trending Products on Mobile */
+  .trending-section {
+    padding: 45px 0 40px;
+  }
+  .trending-title {
+    font-size: 1.6rem;
+  }
+  .carousel-prev-btn, .carousel-next-btn {
+    display: none; /* Mobile swipe/scroll */
+  }
+  .trending-products-track {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .product-showcase-card {
+    padding: 14px 10px;
+    border-radius: 6px;
+  }
+  .card-visual-combo {
+    height: 175px;
+    margin-bottom: 10px;
+  }
+  .card-category-sub {
+    font-size: 0.6rem;
+  }
+  .card-perfume-name {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  .card-rating-row {
+    font-size: 0.68rem;
+    margin-bottom: 6px;
+  }
+  .card-price-display {
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+  }
+  .card-btn-add {
+    padding: 10px 6px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* 6. Gender Split ("FOR HER" & "FOR HIM") on Mobile */
+  .gender-split-section {
+    padding: 20px 0 40px;
+  }
+  .gender-split-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .gender-action-overlay {
+    opacity: 1; /* Always show shop pill on mobile touch */
+  }
+  .gender-shop-pill {
+    transform: translateY(0);
+    padding: 7px 20px;
+    font-size: 0.76rem;
+  }
+
+  /* 7. Gourmand Section on Mobile */
+  .gourmand-campaign-banner {
+    padding: 35px 0;
+  }
+  .gourmand-banner-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 24px;
+  }
+  .gourmand-text-side {
+    max-width: 100%;
+  }
+  .gourmand-title-big {
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+  }
+  .gourmand-desc {
+    font-size: 0.88rem;
+    margin-bottom: 18px;
+  }
+  .btn-gourmand-cta {
+    padding: 12px 24px;
+    font-size: 0.78rem;
+  }
+  .gourmand-visual-img {
+    max-height: 260px;
+    margin: 0 auto;
+  }
+
+  /* 8. Gifting Section on Mobile */
+  .gifting-lifestyle-section {
+    padding: 45px 0;
+    min-height: 340px;
+  }
+  .gifting-title {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+  .gifting-subtitle {
+    font-size: 0.88rem;
+    margin-bottom: 20px;
+  }
+  .btn-gifting-cta {
+    padding: 12px 24px;
+    font-size: 0.78rem;
+  }
+
+  /* 9. Botanical Distillation Section on Mobile */
+  .botanical-split-section {
+    padding: 45px 0;
+  }
+  .botanical-split-grid {
+    grid-template-columns: 1fr;
+  }
+  .botanical-img-side {
+    height: 240px;
+  }
+  .botanical-text-side {
+    padding: 30px 20px;
+  }
+  .botanical-title {
+    font-size: 1.6rem;
+  }
+  .botanical-desc {
+    font-size: 0.86rem;
+  }
+
+  /* 10. Testimonials on Mobile */
+  .testimonials-section {
+    padding: 45px 0;
+  }
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 25px;
+  }
+  .testimonial-card-item {
+    padding: 22px 18px;
+  }
+
+  /* 11. Store Locator on Mobile */
+  .store-locator-strip {
+    padding: 35px 0;
+  }
+  .store-loc-title {
+    font-size: 1.15rem;
+    margin-bottom: 14px;
+  }
+  .store-loc-form {
+    flex-direction: column;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    gap: 10px;
+  }
+  .btn-loc-current, .store-pincode-input, .btn-loc-search {
+    width: 100%;
+    height: 44px;
+  }
+
+  /* 12. Assurance Strip on Mobile */
+  .assurance-strip {
+    padding: 24px 0;
+  }
+  .assurance-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    text-align: left;
+  }
+  .assurance-item {
+    justify-content: flex-start;
+    padding: 0 10px;
+  }
+
+  /* 13. Footer on Mobile */
+  .site-footer-dark {
+    padding: 45px 0 20px;
+  }
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 30px;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+  }
+
+  /* 14. Modals and Drawers on Mobile */
+  .cart-drawer {
+    width: 100vw;
+  }
+  .cart-drawer-header, .free-shipping-meter, .cart-items-list, .cart-drawer-footer {
+    padding: 16px 18px;
+  }
+  .checkout-modal-card {
+    max-height: 94vh;
+    border-radius: 6px;
+  }
+  .modal-body-scroll {
+    padding: 18px 16px;
+  }
+  .modal-body-scroll form > div {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 440px) {
+  .trending-products-track {
+    grid-template-columns: 1fr; /* Single column on very compact phones */
+  }
+  .product-showcase-card {
+    max-width: 340px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .brand-logo-text {
+    font-size: 1.4rem;
+  }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }

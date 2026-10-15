@@ -735,6 +735,35 @@ function showToast(msg) {
   }, 3200);
 }
 
+function toggleMobileSearchBar() {
+  const bar = document.getElementById('headerSearchBar');
+  if (bar) {
+    bar.classList.toggle('active');
+    if (bar.classList.contains('active')) {
+      document.getElementById('headerSearchInput')?.focus();
+    }
+  }
+}
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('navLinksMenu');
+  if (menu) {
+    menu.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    showToast('Swipe horizontal chips to explore collections');
+  }
+}
+
+// Window scroll effect for transparent header
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('siteHeader');
+  if (!header) return;
+  if (window.scrollY > 40) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
 // 14. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
   loadCartFromStorage();
