@@ -169,7 +169,9 @@ const PERFUMES = [
   }
 ];
 
-// 3. SVG FLACON + LUXURY EMBOSSED BOX GENERATOR (MATCHING BLUE SKINN BOX IN REFERENCE)
+// 3. SVG IMAGE GENERATORS (4 MULTI-ANGLE LUXURY VIEWS FOR EACH PRODUCT)
+
+// View 1: Combo Flacon & Luxury Embossed Packaging Box
 function generateComboFlaconSVG(perfume) {
   const boxColor = perfume.boxColor || '#3D2947';
   const liquidColor = perfume.liquidColor || '#D8A9C1';
@@ -241,6 +243,178 @@ function generateComboFlaconSVG(perfume) {
   `;
 }
 
+// View 2: Crystal Flacon Solo Detail (Centered Macro Perspective)
+function generateFlaconSoloSVG(perfume) {
+  const liquidColor = perfume.liquidColor || '#D8A9C1';
+  return `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 230" width="100%" height="100%">
+      <defs>
+        <filter id="soloFlaconShadow-${perfume.id}" x="-30%" y="-15%" width="160%" height="140%">
+          <feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#584A63" flood-opacity="0.25" />
+        </filter>
+        <linearGradient id="soloCapGrad-${perfume.id}" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#9283A9" />
+          <stop offset="25%" stop-color="#ECBDC6" />
+          <stop offset="50%" stop-color="#F6D9D2" />
+          <stop offset="75%" stop-color="#D8A9C1" />
+          <stop offset="100%" stop-color="#9283A9" />
+        </linearGradient>
+        <linearGradient id="soloLiquidGrad-${perfume.id}" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#FAF6F5" stop-opacity="0.5" />
+          <stop offset="35%" stop-color="${liquidColor}" stop-opacity="0.85" />
+          <stop offset="100%" stop-color="#852256" stop-opacity="0.95" />
+        </linearGradient>
+        <linearGradient id="glassShimmer-${perfume.id}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.7" />
+          <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0.1" />
+          <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0" />
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.4" />
+        </linearGradient>
+      </defs>
+
+      <g filter="url(#soloFlaconShadow-${perfume.id})">
+        <!-- Spray Atomizer Neck -->
+        <rect x="91" y="44" width="18" height="16" fill="url(#soloCapGrad-${perfume.id})" rx="1.5" />
+        <rect x="88" y="56" width="24" height="6" fill="#F6D9D2" stroke="#B898C1" stroke-width="0.5" rx="1" />
+
+        <!-- Heavy Faceted Cap -->
+        <rect x="76" y="18" width="48" height="28" fill="url(#soloCapGrad-${perfume.id})" rx="3" stroke="#D8A9C1" stroke-width="0.8" />
+        <circle cx="100" cy="32" r="5" fill="none" stroke="#FFFFFF" stroke-width="0.7" opacity="0.8" />
+        <line x1="76" y1="38" x2="124" y2="38" stroke="#9283A9" stroke-width="0.6" opacity="0.6" />
+
+        <!-- Heavy Base Crystal Flacon Body -->
+        <rect x="52" y="60" width="96" height="150" rx="12" fill="#FFFFFF" fill-opacity="0.9" stroke="rgba(216, 169, 193, 0.7)" stroke-width="1.6" />
+        
+        <!-- Thick Solid Crystal Base Bottom -->
+        <path d="M 54 185 L 146 185 L 146 198 Q 146 208 136 208 L 64 208 Q 54 208 54 198 Z" fill="#F2EAE9" opacity="0.7" />
+
+        <!-- Liquid Chamber -->
+        <rect x="58" y="76" width="84" height="114" rx="7" fill="url(#soloLiquidGrad-${perfume.id})" />
+
+        <!-- Glass Prism Refraction Shimmer -->
+        <rect x="54" y="62" width="92" height="144" rx="10" fill="url(#glassShimmer-${perfume.id})" pointer-events="none" />
+        <line x1="62" y1="68" x2="62" y2="198" stroke="#FFFFFF" stroke-width="2" opacity="0.65" />
+        <line x1="138" y1="68" x2="138" y2="198" stroke="#FFFFFF" stroke-width="1.2" opacity="0.4" />
+
+        <!-- Luxury Flacon Label -->
+        <rect x="65" y="104" width="70" height="56" rx="3" fill="#FFFFFF" stroke="#D8A9C1" stroke-width="0.9" opacity="0.98" />
+        <rect x="67" y="106" width="66" height="52" rx="2" fill="none" stroke="rgba(236, 189, 198, 0.5)" stroke-width="0.5" />
+        <text x="100" y="121" font-family="'GeosansLight', sans-serif" font-size="8.5" fill="#1F1726" text-anchor="middle" letter-spacing="2" font-weight="600">SCENTOZ</text>
+        <line x1="80" y1="126" x2="120" y2="126" stroke="#D8A9C1" stroke-width="0.5" opacity="0.6" />
+        <text x="100" y="137" font-family="'GeosansLight', sans-serif" font-size="7" fill="#852256" text-anchor="middle" letter-spacing="1" font-weight="600">${perfume.name}</text>
+        <text x="100" y="147" font-family="'Avenir', sans-serif" font-size="3.8" fill="#584A63" text-anchor="middle" font-weight="600" letter-spacing="0.5">EXTRAIT DE PARFUM</text>
+        <text x="100" y="154" font-family="'Avenir', sans-serif" font-size="3.2" fill="#9283A9" text-anchor="middle" letter-spacing="0.4">100 ML · 3.4 FL. OZ.</text>
+      </g>
+    </svg>
+  `;
+}
+
+// View 3: Artisanal Coffret / Packaging Box Solo View
+function generateBoxSoloSVG(perfume) {
+  const boxColor = perfume.boxColor || '#3D2947';
+  return `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 230" width="100%" height="100%">
+      <defs>
+        <filter id="boxSoloShadow-${perfume.id}" x="-30%" y="-15%" width="160%" height="140%">
+          <feDropShadow dx="0" dy="16" stdDeviation="12" flood-color="#4A223B" flood-opacity="0.28" />
+        </filter>
+        <linearGradient id="boxFoilGrad-${perfume.id}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#F6D9D2" />
+          <stop offset="50%" stop-color="#ECBDC6" />
+          <stop offset="100%" stop-color="#D8A9C1" />
+        </linearGradient>
+      </defs>
+
+      <g filter="url(#boxSoloShadow-${perfume.id})">
+        <!-- Main Rigid Box Body -->
+        <rect x="42" y="24" width="116" height="182" rx="6" fill="${boxColor}" stroke="#D8A9C1" stroke-width="1.2" />
+        
+        <!-- Debossed Concentric Framing -->
+        <rect x="48" y="30" width="104" height="170" rx="4" fill="none" stroke="rgba(246, 217, 210, 0.45)" stroke-width="0.8" />
+        <rect x="52" y="34" width="96" height="162" rx="2" fill="none" stroke="rgba(216, 169, 193, 0.3)" stroke-width="0.5" />
+
+        <!-- Crest Icon at Top -->
+        <g transform="translate(100, 52) scale(0.7)">
+          <circle cx="0" cy="0" r="12" fill="none" stroke="#F6D9D2" stroke-width="0.9" />
+          <polygon points="0,-8 3,-2 8,-2 4,2 6,8 0,4 -6,8 -4,2 -8,-2 -3,-2" fill="#F6D9D2" opacity="0.9" />
+        </g>
+
+        <!-- Brand Title in Geo Sans Light -->
+        <text x="100" y="78" font-family="'GeosansLight', sans-serif" font-size="12" fill="#F6D9D2" text-anchor="middle" letter-spacing="3" font-weight="400">SCENTOZ</text>
+        <text x="100" y="90" font-family="'Avenir', sans-serif" font-size="4.8" fill="#ECBDC6" text-anchor="middle" letter-spacing="1.8" font-weight="600">MAISON DE PARFUM</text>
+        <text x="100" y="98" font-family="'Avenir', sans-serif" font-size="3.6" fill="#B898C1" text-anchor="middle" letter-spacing="1.2">GRASSE & KANNAUJ</text>
+
+        <!-- Center Inset Cartouche / Nameplate -->
+        <rect x="56" y="110" width="88" height="42" rx="3" fill="rgba(255, 255, 255, 0.08)" stroke="url(#boxFoilGrad-${perfume.id})" stroke-width="0.8" />
+        <text x="100" y="128" font-family="'GeosansLight', sans-serif" font-size="9" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.8" font-weight="600">${perfume.name}</text>
+        <line x1="72" y1="134" x2="128" y2="134" stroke="#D8A9C1" stroke-width="0.6" opacity="0.6" />
+        <text x="100" y="144" font-family="'Avenir', sans-serif" font-size="4.2" fill="#F6D9D2" text-anchor="middle" letter-spacing="0.8">${perfume.concentration.toUpperCase()}</text>
+
+        <!-- Volume & Concentration -->
+        <text x="100" y="168" font-family="'Avenir', sans-serif" font-size="4.5" fill="#D4CADB" text-anchor="middle" letter-spacing="1">100 ML · 3.4 FL. OZ.</text>
+        <text x="100" y="177" font-family="'Avenir', sans-serif" font-size="3.8" fill="#ECBDC6" text-anchor="middle" letter-spacing="0.6">30% PURE EXTRAIT OIL</text>
+
+        <!-- Artisanal Wax Seal Monogram at Bottom Right -->
+        <circle cx="132" cy="184" r="10" fill="#852256" stroke="#F6D9D2" stroke-width="0.8" />
+        <text x="132" y="187.5" font-family="'GeosansLight', sans-serif" font-size="6" fill="#F6D9D2" text-anchor="middle" font-weight="700">SCZ</text>
+      </g>
+    </svg>
+  `;
+}
+
+// View 4: Harvest Botanicals & Scent Composition Plate
+function generateBotanicalNotesSVG(perfume) {
+  const topStr = perfume.topNotes.slice(0, 2).join(' · ');
+  const heartStr = perfume.heartNotes.slice(0, 2).join(' · ');
+  const baseStr = perfume.baseNotes.slice(0, 2).join(' · ');
+
+  return `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 230" width="100%" height="100%">
+      <defs>
+        <filter id="botanicalShadow-${perfume.id}" x="-20%" y="-10%" width="140%" height="130%">
+          <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#584A63" flood-opacity="0.18" />
+        </filter>
+      </defs>
+
+      <g filter="url(#botanicalShadow-${perfume.id})">
+        <!-- Parchment Card Canvas -->
+        <rect x="22" y="16" width="156" height="198" rx="8" fill="#FAF6F5" stroke="#D8A9C1" stroke-width="1.2" />
+        <rect x="26" y="20" width="148" height="190" rx="6" fill="none" stroke="rgba(236, 189, 198, 0.4)" stroke-width="0.6" />
+
+        <!-- Header: Botanical Atelier -->
+        <text x="100" y="38" font-family="'GeosansLight', sans-serif" font-size="8.5" fill="#1F1726" text-anchor="middle" letter-spacing="2" font-weight="600">OLFACTORY COMPOSITION</text>
+        <text x="100" y="48" font-family="'Avenir', sans-serif" font-size="4.2" fill="#852256" text-anchor="middle" letter-spacing="1" font-weight="700">${perfume.family.toUpperCase()}</text>
+        <line x1="45" y1="54" x2="155" y2="54" stroke="#D8A9C1" stroke-width="0.6" opacity="0.6" />
+
+        <!-- 1. Top Notes Plate -->
+        <rect x="32" y="62" width="136" height="34" rx="4" fill="#FFFFFF" stroke="rgba(216, 169, 193, 0.5)" stroke-width="0.7" />
+        <circle cx="48" cy="79" r="8" fill="#F6D9D2" />
+        <text x="48" y="82" font-family="'Avenir', sans-serif" font-size="6.5" fill="#852256" text-anchor="middle">✧</text>
+        <text x="64" y="74" font-family="'Avenir', sans-serif" font-size="4" fill="#852256" font-weight="700" letter-spacing="0.8">TOP NOTES · 0-30 MINS</text>
+        <text x="64" y="85" font-family="'GeosansLight', sans-serif" font-size="6.5" fill="#1F1726" font-weight="600">${topStr}</text>
+
+        <!-- 2. Heart Notes Plate -->
+        <rect x="32" y="104" width="136" height="34" rx="4" fill="#FFFFFF" stroke="rgba(216, 169, 193, 0.5)" stroke-width="0.7" />
+        <circle cx="48" cy="121" r="8" fill="#ECBDC6" />
+        <text x="48" y="124" font-family="'Avenir', sans-serif" font-size="6.5" fill="#852256" text-anchor="middle">❀</text>
+        <text x="64" y="116" font-family="'Avenir', sans-serif" font-size="4" fill="#852256" font-weight="700" letter-spacing="0.8">HEART NOTES · 1-6 HOURS</text>
+        <text x="64" y="127" font-family="'GeosansLight', sans-serif" font-size="6.5" fill="#1F1726" font-weight="600">${heartStr}</text>
+
+        <!-- 3. Base Notes Plate -->
+        <rect x="32" y="146" width="136" height="34" rx="4" fill="#FFFFFF" stroke="rgba(216, 169, 193, 0.5)" stroke-width="0.7" />
+        <circle cx="48" cy="163" r="8" fill="#D8A9C1" />
+        <text x="48" y="166" font-family="'Avenir', sans-serif" font-size="6.5" fill="#852256" text-anchor="middle">𖡡</text>
+        <text x="64" y="158" font-family="'Avenir', sans-serif" font-size="4" fill="#852256" font-weight="700" letter-spacing="0.8">BASE NOTES · 14+ HOURS</text>
+        <text x="64" y="169" font-family="'GeosansLight', sans-serif" font-size="6.5" fill="#1F1726" font-weight="600">${baseStr}</text>
+
+        <!-- Bottom Concentration Stamp -->
+        <rect x="38" y="188" width="124" height="16" rx="8" fill="#852256" />
+        <text x="100" y="199" font-family="'Avenir', sans-serif" font-size="4" fill="#F6D9D2" text-anchor="middle" font-weight="600" letter-spacing="1">30% OIL CONCENTRATION · EXTRAIT</text>
+      </g>
+    </svg>
+  `;
+}
+
 // 4. CURRENCY CONVERSION & FORMATTING
 function formatPrice(inrAmount) {
   const current = APP_STATE.currencyRates[APP_STATE.currency] || APP_STATE.currencyRates.INR;
@@ -260,7 +434,235 @@ function formatPrice(inrAmount) {
   return '₹' + Math.round(inrAmount).toLocaleString('en-IN');
 }
 
-// 5. RENDER TRENDING PRODUCTS CAROUSEL
+// 5. PRODUCT CARD HTML & MULTI-IMAGE SLIDER CONTROLLER
+const SLIDE_TITLES = ['1/4 SET', '2/4 FLACON', '3/4 COFFRET', '4/4 BOTANICALS'];
+
+function renderProductCardHTML(p) {
+  return `
+    <article class="product-showcase-card">
+      <div class="card-visual-combo" data-product-id="${p.id}" data-active-slide="0">
+        <!-- Multi-Image Track -->
+        <div class="card-slider-wrapper">
+          <div class="card-slider-track" id="cardSliderTrack-${p.id}">
+            <div class="card-slide-item" data-index="0" title="${p.name} - Flacon & Coffret Set">
+              ${generateComboFlaconSVG(p)}
+            </div>
+            <div class="card-slide-item" data-index="1" title="${p.name} - Extrait Flacon Detail">
+              ${generateFlaconSoloSVG(p)}
+            </div>
+            <div class="card-slide-item" data-index="2" title="${p.name} - Artisanal Coffret">
+              ${generateBoxSoloSVG(p)}
+            </div>
+            <div class="card-slide-item" data-index="3" title="${p.name} - Harvest Botanicals & Notes">
+              ${generateBotanicalNotesSVG(p)}
+            </div>
+          </div>
+        </div>
+
+        <!-- Current View Badge -->
+        <span class="card-slide-badge" id="cardSlideBadge-${p.id}">1/4 SET</span>
+
+        <!-- Hover Swipe Hint -->
+        <span class="card-swipe-hint"><i class="fas fa-hand-pointer"></i> Swipe Left</span>
+
+        <!-- Hover Navigation Arrows -->
+        <button type="button" class="card-arrow-btn card-arrow-prev" onclick="handleCardSlideNav(event, ${p.id}, -1)" aria-label="Previous Image">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button type="button" class="card-arrow-btn card-arrow-next" onclick="handleCardSlideNav(event, ${p.id}, 1)" aria-label="Next Image">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Slide Indicators / Pagination Dots -->
+        <div class="card-slide-dots" id="cardSlideDots-${p.id}">
+          <span class="card-dot active" onclick="handleCardDotClick(event, ${p.id}, 0)" title="Set View"></span>
+          <span class="card-dot" onclick="handleCardDotClick(event, ${p.id}, 1)" title="Flacon View"></span>
+          <span class="card-dot" onclick="handleCardDotClick(event, ${p.id}, 2)" title="Coffret View"></span>
+          <span class="card-dot" onclick="handleCardDotClick(event, ${p.id}, 3)" title="Botanicals View"></span>
+        </div>
+      </div>
+
+      <div class="card-category-sub">${p.concentration}</div>
+      <h3 class="card-perfume-name" onclick="openQuickViewModal(${p.id})" style="cursor: pointer;">${p.name}</h3>
+      <div class="card-rating-row">
+        <span class="stars-rating">★★★★★</span>
+        <span style="color: var(--text-muted); font-size: 0.72rem;">${p.rating} (${p.reviewsCount})</span>
+      </div>
+      <div class="card-price-display">
+        ${formatPrice(p.price)}
+        <span style="font-size: 0.75rem; color: #847491; text-decoration: line-through; font-weight: 400; margin-left: 6px;">
+          ${formatPrice(p.origPrice)}
+        </span>
+      </div>
+      <button class="card-btn-add" onclick="addToCart(${p.id})">
+        <i class="fas fa-shopping-bag"></i> Add to Bag
+      </button>
+    </article>
+  `;
+}
+
+function setProductCardSlide(productId, slideIndex) {
+  const container = document.querySelector(`.card-visual-combo[data-product-id="${productId}"]`);
+  if (!container) return;
+
+  const totalSlides = 4;
+  const newIndex = ((slideIndex % totalSlides) + totalSlides) % totalSlides;
+  container.dataset.activeSlide = newIndex;
+
+  const track = document.getElementById(`cardSliderTrack-${productId}`);
+  if (track) {
+    track.style.transform = `translateX(-${newIndex * 100}%)`;
+  }
+
+  const badge = document.getElementById(`cardSlideBadge-${productId}`);
+  if (badge) {
+    badge.textContent = SLIDE_TITLES[newIndex] || `${newIndex + 1}/${totalSlides}`;
+  }
+
+  const dotsWrap = document.getElementById(`cardSlideDots-${productId}`);
+  if (dotsWrap) {
+    const dots = dotsWrap.querySelectorAll('.card-dot');
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === newIndex);
+    });
+  }
+}
+
+function handleCardSlideNav(e, productId, direction) {
+  if (e) {
+    e.stopPropagation();
+    e.preventDefault();
+  }
+  const container = document.querySelector(`.card-visual-combo[data-product-id="${productId}"]`);
+  if (!container) return;
+  const current = parseInt(container.dataset.activeSlide || '0', 10);
+  setProductCardSlide(productId, current + direction);
+}
+
+function handleCardDotClick(e, productId, targetIndex) {
+  if (e) {
+    e.stopPropagation();
+    e.preventDefault();
+  }
+  setProductCardSlide(productId, targetIndex);
+}
+
+function initProductCardSliders() {
+  document.querySelectorAll('.card-visual-combo').forEach(cardVisual => {
+    if (cardVisual.dataset.sliderInitialized === 'true') return;
+    cardVisual.dataset.sliderInitialized = 'true';
+
+    const productId = parseInt(cardVisual.dataset.productId, 10);
+    if (!productId) return;
+
+    let startX = 0;
+    let startY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isMouseDown = false;
+    let hasSwiped = false;
+
+    // 1. Touch swipe gestures (Mobile & Touch screens)
+    cardVisual.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      currentX = startX;
+      currentY = startY;
+      hasSwiped = false;
+    }, { passive: true });
+
+    cardVisual.addEventListener('touchmove', (e) => {
+      if (e.touches.length !== 1) return;
+      currentX = e.touches[0].clientX;
+      currentY = e.touches[0].clientY;
+    }, { passive: true });
+
+    cardVisual.addEventListener('touchend', () => {
+      const diffX = currentX - startX;
+      const diffY = currentY - startY;
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 28) {
+        hasSwiped = true;
+        if (diffX < 0) {
+          handleCardSlideNav(null, productId, 1); // Swiped LEFT -> Next
+        } else {
+          handleCardSlideNav(null, productId, -1); // Swiped RIGHT -> Prev
+        }
+      }
+    }, { passive: true });
+
+    // 2. Mouse drag / swipe gestures (Desktop)
+    cardVisual.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      if (e.target.closest('.card-arrow-btn') || e.target.closest('.card-dot')) return;
+
+      isMouseDown = true;
+      startX = e.clientX;
+      currentX = startX;
+      hasSwiped = false;
+      cardVisual.style.cursor = 'grabbing';
+    });
+
+    cardVisual.addEventListener('mousemove', (e) => {
+      if (!isMouseDown) return;
+      currentX = e.clientX;
+      if (Math.abs(currentX - startX) > 8) {
+        hasSwiped = true;
+      }
+    });
+
+    const finishMouseSwipe = () => {
+      if (!isMouseDown) return;
+      isMouseDown = false;
+      cardVisual.style.cursor = 'grab';
+
+      const diffX = currentX - startX;
+      if (Math.abs(diffX) > 28) {
+        hasSwiped = true;
+        if (diffX < 0) {
+          handleCardSlideNav(null, productId, 1); // Dragged LEFT -> Next
+        } else {
+          handleCardSlideNav(null, productId, -1); // Dragged RIGHT -> Prev
+        }
+      }
+      setTimeout(() => { hasSwiped = false; }, 80);
+    };
+
+    cardVisual.addEventListener('mouseup', finishMouseSwipe);
+    cardVisual.addEventListener('mouseleave', finishMouseSwipe);
+
+    // 3. Trackpad horizontal swipe
+    let wheelTimeout = null;
+    cardVisual.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) > 25 && Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        if (!wheelTimeout) {
+          if (e.deltaX > 25) {
+            handleCardSlideNav(null, productId, 1);
+          } else if (e.deltaX < -25) {
+            handleCardSlideNav(null, productId, -1);
+          }
+          wheelTimeout = setTimeout(() => { wheelTimeout = null; }, 320);
+        }
+      }
+    }, { passive: false });
+
+    // 4. Container click handler: opens modal only if user did not swipe
+    cardVisual.addEventListener('click', (e) => {
+      if (hasSwiped) {
+        e.stopPropagation();
+        e.preventDefault();
+        return;
+      }
+      if (e.target.closest('.card-arrow-btn') || e.target.closest('.card-dot')) {
+        return;
+      }
+      openQuickViewModal(productId);
+    });
+  });
+}
+
+// 6. RENDER TRENDING PRODUCTS CAROUSEL
 function renderTrendingProducts() {
   const track = document.getElementById('trendingProductsTrack');
   if (!track) return;
@@ -274,30 +676,8 @@ function renderTrendingProducts() {
     visible.push(PERFUMES[idx]);
   }
 
-  track.innerHTML = visible.map(p => {
-    return `
-      <article class="product-showcase-card">
-        <div class="card-visual-combo" onclick="openQuickViewModal(${p.id})">
-          ${generateComboFlaconSVG(p)}
-        </div>
-        <div class="card-category-sub">${p.concentration}</div>
-        <h3 class="card-perfume-name" onclick="openQuickViewModal(${p.id})" style="cursor: pointer;">${p.name}</h3>
-        <div class="card-rating-row">
-          <span class="stars-rating">★★★★★</span>
-          <span style="color: var(--text-muted); font-size: 0.72rem;">${p.rating} (${p.reviewsCount})</span>
-        </div>
-        <div class="card-price-display">
-          ${formatPrice(p.price)}
-          <span style="font-size: 0.75rem; color: #847491; text-decoration: line-through; font-weight: 400; margin-left: 6px;">
-            ${formatPrice(p.origPrice)}
-          </span>
-        </div>
-        <button class="card-btn-add" onclick="addToCart(${p.id})">
-          <i class="fas fa-shopping-bag"></i> Add to Bag
-        </button>
-      </article>
-    `;
-  }).join('');
+  track.innerHTML = visible.map(p => renderProductCardHTML(p)).join('');
+  initProductCardSliders();
 }
 
 function nextTrendingSlide() {
@@ -486,8 +866,8 @@ function openReelModal(title) {
   showToast(`Playing video reel: "${title}"`);
 }
 
-// 9. QUICK VIEW MODAL
-function openQuickViewModal(perfumeId) {
+// 9. QUICK VIEW MODAL (WITH MULTI-VIEW GALLERY SWITCHER)
+function openQuickViewModal(perfumeId, activeImgIndex = 0) {
   const p = PERFUMES.find(item => item.id === perfumeId);
   if (!p) return;
 
@@ -495,10 +875,33 @@ function openQuickViewModal(perfumeId) {
   const content = document.getElementById('quickViewContent');
   if (!modal || !content) return;
 
+  const imgViews = [
+    { name: 'Set View', svg: generateComboFlaconSVG(p) },
+    { name: 'Flacon Detail', svg: generateFlaconSoloSVG(p) },
+    { name: 'Artisanal Coffret', svg: generateBoxSoloSVG(p) },
+    { name: 'Harvest Botanicals', svg: generateBotanicalNotesSVG(p) }
+  ];
+
+  const currentSvg = imgViews[activeImgIndex]?.svg || generateComboFlaconSVG(p);
+
   content.innerHTML = `
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;">
-      <div style="height: 320px; display: flex; align-items: center; justify-content: center; background: #FAF6F5; border-radius: 8px;">
-        ${generateComboFlaconSVG(p)}
+      <div>
+        <div id="quickViewImgContainer" style="height: 320px; display: flex; align-items: center; justify-content: center; background: #FAF6F5; border-radius: 8px; border: 1px solid rgba(216, 169, 193, 0.4); margin-bottom: 12px; position: relative;">
+          ${currentSvg}
+        </div>
+        <!-- Quick View Image Selector Buttons -->
+        <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
+          ${imgViews.map((img, idx) => `
+            <button 
+              type="button" 
+              onclick="openQuickViewModal(${p.id}, ${idx})" 
+              style="padding: 5px 12px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; border-radius: 14px; border: 1px solid ${idx === activeImgIndex ? '#852256' : 'rgba(216, 169, 193, 0.5)'}; background: ${idx === activeImgIndex ? '#852256' : '#FFFFFF'}; color: ${idx === activeImgIndex ? '#FFFFFF' : '#1F1726'}; cursor: pointer; transition: all 0.2s ease;"
+            >
+              ${img.name}
+            </button>
+          `).join('')}
+        </div>
       </div>
       <div>
         <div style="font-size: 0.74rem; letter-spacing: 0.2em; color: #852256; text-transform: uppercase; font-weight: 700; margin-bottom: 6px;">
@@ -591,28 +994,8 @@ function filterByGender(gender) {
   const filtered = PERFUMES.filter(p => p.gender === gender || p.gender === 'unisex');
   const track = document.getElementById('trendingProductsTrack');
   if (track) {
-    track.innerHTML = filtered.map(p => `
-      <article class="product-showcase-card">
-        <div class="card-visual-combo" onclick="openQuickViewModal(${p.id})">
-          ${generateComboFlaconSVG(p)}
-        </div>
-        <div class="card-category-sub">${p.concentration}</div>
-        <h3 class="card-perfume-name" onclick="openQuickViewModal(${p.id})" style="cursor: pointer;">${p.name}</h3>
-        <div class="card-rating-row">
-          <span class="stars-rating">★★★★★</span>
-          <span style="color: var(--text-muted); font-size: 0.72rem;">${p.rating} (${p.reviewsCount})</span>
-        </div>
-        <div class="card-price-display">
-          ${formatPrice(p.price)}
-          <span style="font-size: 0.75rem; color: #847491; text-decoration: line-through; font-weight: 400; margin-left: 6px;">
-            ${formatPrice(p.origPrice)}
-          </span>
-        </div>
-        <button class="card-btn-add" onclick="addToCart(${p.id})">
-          <i class="fas fa-shopping-bag"></i> Add to Bag
-        </button>
-      </article>
-    `).join('');
+    track.innerHTML = filtered.map(p => renderProductCardHTML(p)).join('');
+    initProductCardSliders();
   }
   document.getElementById('trendingSection')?.scrollIntoView({ behavior: 'smooth' });
   const label = gender === 'for-her' ? 'FOR HER' : 'FOR HIM';
@@ -626,28 +1009,8 @@ function filterByFamily(family) {
   );
   const track = document.getElementById('trendingProductsTrack');
   if (track && filtered.length > 0) {
-    track.innerHTML = filtered.map(p => `
-      <article class="product-showcase-card">
-        <div class="card-visual-combo" onclick="openQuickViewModal(${p.id})">
-          ${generateComboFlaconSVG(p)}
-        </div>
-        <div class="card-category-sub">${p.concentration}</div>
-        <h3 class="card-perfume-name" onclick="openQuickViewModal(${p.id})" style="cursor: pointer;">${p.name}</h3>
-        <div class="card-rating-row">
-          <span class="stars-rating">★★★★★</span>
-          <span style="color: var(--text-muted); font-size: 0.72rem;">${p.rating} (${p.reviewsCount})</span>
-        </div>
-        <div class="card-price-display">
-          ${formatPrice(p.price)}
-          <span style="font-size: 0.75rem; color: #847491; text-decoration: line-through; font-weight: 400; margin-left: 6px;">
-            ${formatPrice(p.origPrice)}
-          </span>
-        </div>
-        <button class="card-btn-add" onclick="addToCart(${p.id})">
-          <i class="fas fa-shopping-bag"></i> Add to Bag
-        </button>
-      </article>
-    `).join('');
+    track.innerHTML = filtered.map(p => renderProductCardHTML(p)).join('');
+    initProductCardSliders();
   }
   document.getElementById('trendingSection')?.scrollIntoView({ behavior: 'smooth' });
   showToast(`Showing ${family.toUpperCase()} collection`);
@@ -678,28 +1041,8 @@ function handleHeaderSearch(query) {
         </div>
       `;
     } else {
-      track.innerHTML = matched.map(p => `
-        <article class="product-showcase-card">
-          <div class="card-visual-combo" onclick="openQuickViewModal(${p.id})">
-            ${generateComboFlaconSVG(p)}
-          </div>
-          <div class="card-category-sub">${p.concentration}</div>
-          <h3 class="card-perfume-name" onclick="openQuickViewModal(${p.id})" style="cursor: pointer;">${p.name}</h3>
-          <div class="card-rating-row">
-            <span class="stars-rating">★★★★★</span>
-            <span style="color: var(--text-muted); font-size: 0.72rem;">${p.rating} (${p.reviewsCount})</span>
-          </div>
-          <div class="card-price-display">
-            ${formatPrice(p.price)}
-            <span style="font-size: 0.75rem; color: #847491; text-decoration: line-through; font-weight: 400; margin-left: 6px;">
-              ${formatPrice(p.origPrice)}
-            </span>
-          </div>
-          <button class="card-btn-add" onclick="addToCart(${p.id})">
-            <i class="fas fa-shopping-bag"></i> Add to Bag
-          </button>
-        </article>
-      `).join('');
+      track.innerHTML = matched.map(p => renderProductCardHTML(p)).join('');
+      initProductCardSliders();
     }
   }
 }

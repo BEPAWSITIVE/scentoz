@@ -35,20 +35,7 @@
           <span class="brand-logo-sub">HAUTE PARFUMERIE · GRASSE & KANNAUJ</span>
         </a>
 
-        <!-- Center Search Bar -->
-        <div class="header-search-bar" id="headerSearchBar">
-          <i class="fas fa-search"></i>
-          <input 
-            type="text" 
-            class="header-search-input" 
-            id="headerSearchInput" 
-            placeholder="Search fragrances, notes (Oud, Saffron, Rose, Amber)..." 
-            onkeyup="handleHeaderSearch(this.value)"
-            aria-label="Search Fragrances"
-          >
-        </div>
-
-        <!-- Header Action Icons -->
+        <!-- Header Action Icons (Clean Luxury Navigation) -->
         <div class="header-nav-icons">
           <!-- Currency Selector Pill -->
           <div class="currency-header-pill">
@@ -61,25 +48,9 @@
             </select>
           </div>
 
-          <!-- Mobile search icon toggle -->
-          <button class="header-icon-link mobile-search-btn" onclick="toggleMobileSearchBar()" title="Search Fragrances">
-            <i class="fas fa-search"></i>
-            <span>Search</span>
-          </button>
-
-          <a href="#storeLocatorSection" class="header-icon-link desktop-only-icon" title="Find a Store">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Stores</span>
-          </a>
-
-          <a href="javascript:void(0)" onclick="showToast('Member Portal: Welcome to SCENTOZ Privé')" class="header-icon-link desktop-only-icon" title="Account">
+          <a href="javascript:void(0)" onclick="showToast('Member Portal: Welcome to SCENTOZ Privé')" class="header-icon-link" title="Account">
             <i class="far fa-user"></i>
             <span>Account</span>
-          </a>
-
-          <a href="javascript:void(0)" onclick="showToast('Your Wishlist: 2 saved Extrait Flacons')" class="header-icon-link" title="Wishlist">
-            <i class="far fa-heart"></i>
-            <span>Wishlist</span>
           </a>
 
           <button class="header-icon-link" onclick="openCartDrawer()" id="cartHeaderBtn" title="Shopping Bag" aria-label="Shopping Bag">

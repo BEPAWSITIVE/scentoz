@@ -570,14 +570,205 @@ button {
   box-shadow: 0 12px 28px rgba(184, 152, 193, 0.2);
 }
 
+/* ==========================================================================
+   PRODUCT SHOWCASE CARD - MULTI-IMAGE GALLERY & SWIPE SLIDER
+   ========================================================================== */
 .card-visual-combo {
-  height: 230px;
+  height: 240px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #FAF6F5;
+  border: 1px solid rgba(216, 169, 193, 0.25);
+  margin-bottom: 18px;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y; /* Allow vertical page scroll while capturing horizontal swipe */
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card-visual-combo:active {
+  cursor: grabbing;
+}
+
+.card-visual-combo:hover {
+  border-color: rgba(184, 152, 193, 0.6);
+  box-shadow: inset 0 0 12px rgba(216, 169, 193, 0.15);
+}
+
+.card-slider-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-slider-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.card-slide-item {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
-  position: relative;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.card-slide-item svg {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+/* Hover Navigation Arrows */
+.card-arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scale(0.85);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(216, 169, 193, 0.6);
+  color: #1F1726;
+  font-size: 0.72rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 3px 10px rgba(74, 34, 59, 0.15);
+  z-index: 6;
   cursor: pointer;
+}
+
+.card-arrow-prev {
+  left: 8px;
+}
+
+.card-arrow-next {
+  right: 8px;
+}
+
+/* Reveal arrows on card / visual hover */
+.card-visual-combo:hover .card-arrow-btn,
+.product-showcase-card:hover .card-arrow-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+.card-arrow-btn:hover {
+  background: #852256;
+  color: #FFFFFF;
+  border-color: #852256;
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 0 4px 14px rgba(133, 34, 86, 0.3);
+}
+
+/* Slide Indicator Dots at Bottom */
+.card-slide-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 6;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 3px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(216, 169, 193, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  opacity: 0.8;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.card-visual-combo:hover .card-slide-dots {
+  opacity: 1;
+}
+
+.card-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #D8A9C1;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-dot.active {
+  width: 16px;
+  border-radius: 4px;
+  background: #852256;
+}
+
+/* Slide Badge */
+.card-slide-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(216, 169, 193, 0.5);
+  color: #852256;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 10px;
+  z-index: 6;
+  text-transform: uppercase;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Subtle swipe hint pill on hover */
+.card-swipe-hint {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(216, 169, 193, 0.4);
+  color: var(--c5-plum);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 3px 7px;
+  border-radius: 10px;
+  z-index: 6;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+
+.card-visual-combo:hover .card-swipe-hint {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card-category-sub {
@@ -1416,32 +1607,8 @@ button {
     font-size: 0.48rem;
     letter-spacing: 0.22em;
   }
-  .desktop-only-icon {
-    display: none !important;
-  }
-  .mobile-search-btn {
-    display: flex;
-  }
   .header-nav-icons {
-    gap: 14px;
-  }
-  .header-search-bar {
-    display: none; /* Toggled on mobile via mobile-search-btn */
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    max-width: 100%;
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(216, 169, 193, 0.3);
-    z-index: 105;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-  }
-  .header-search-bar.active {
-    display: block;
-    animation: fadeInDown 0.25s ease;
+    gap: 12px;
   }
 
   /* 3. Horizontal Swipeable Category Chips on Mobile */
